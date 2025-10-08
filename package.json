@@ -1,0 +1,51 @@
+{
+  "name": "bitcoin-identity",
+  "version": "1.0.0",
+  "description": "Bitcoin Identity - Secure identity management and authentication for Bitcoin SV applications",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 4090",
+    "build": "next build",
+    "start": "next start -p 4090",
+    "lint": "eslint",
+    "kill:4090": "lsof -ti:4090 | xargs kill -9",
+    "kill:dev": "lsof -ti:4090 | xargs kill -9 && lsof -ti:4091 | xargs kill -9",
+    "kill:all": "for port in {4090..4100}; do lsof -ti:$port | xargs kill -9 2>/dev/null || true; done"
+  },
+  "keywords": [
+    "bitcoin",
+    "bsv",
+    "blockchain",
+    "exchange",
+    "contracts",
+    "decentralized",
+    "handcash",
+    "bapps",
+    "boilerplate",
+    "template"
+  ],
+  "author": "Bitcoin Identity",
+  "license": "Open BSV License version 5",
+  "dependencies": {
+    "@bitcoin-os/bridge": "file:../../packages/bitcoin-os-bridge",
+    "@bsv/sdk": "^1.7.6",
+    "@handcash/handcash-connect": "^0.8.11",
+    "@handcash/handcash-sdk": "^0.0.4",
+    "lucide-react": "^0.544.0",
+    "next": "15.5.3",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-icons": "^5.5.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.3",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
