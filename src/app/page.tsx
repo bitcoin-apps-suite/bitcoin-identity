@@ -127,6 +127,41 @@ export default function HomePage() {
             </Link>
           </div>
 
+          {/* Build Your Own */}
+          <div style={{
+            background: 'rgba(59, 130, 246, 0.05)',
+            border: '1px solid rgba(59, 130, 246, 0.2)',
+            borderRadius: '12px',
+            padding: '2rem',
+            margin: '4rem 0',
+            textAlign: 'left'
+          }}>
+            <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#3b82f6' }}>
+              Build Your Own Bitcoin Identity App
+            </h2>
+            <p style={{ color: 'rgba(232, 244, 255, 0.8)', marginBottom: '1.5rem', lineHeight: '1.6' }}>
+              Create your own secure identity management system using open-source Bitcoin libraries and tools. 
+              All components can be audited for security and customized for your specific use case.
+            </p>
+            <div style={{ 
+              background: 'rgba(251, 191, 36, 0.1)', 
+              border: '1px solid rgba(251, 191, 36, 0.3)',
+              borderRadius: '8px',
+              padding: '1.5rem',
+              marginBottom: '1.5rem'
+            }}>
+              <h3 style={{ color: '#fbbf24', marginBottom: '1rem', fontSize: '1.1rem' }}>
+                🛠️ Open Source Security
+              </h3>
+              <ul style={{ listStyle: 'disc', paddingLeft: '1.5rem', color: 'rgba(232, 244, 255, 0.8)' }}>
+                <li style={{ marginBottom: '0.5rem' }}>Auditable cryptographic implementations</li>
+                <li style={{ marginBottom: '0.5rem' }}>Transparent identity verification protocols</li>
+                <li style={{ marginBottom: '0.5rem' }}>No vendor lock-in or hidden dependencies</li>
+                <li style={{ marginBottom: '0.5rem' }}>Community-reviewed security standards</li>
+              </ul>
+            </div>
+          </div>
+
           {/* Getting Started */}
           <div style={{
             background: 'rgba(59, 130, 246, 0.05)',
@@ -186,29 +221,28 @@ export default function HomePage() {
               href="https://replit.com/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="btn-primary"
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
+                display: 'inline-block',
                 textDecoration: 'none',
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                color: 'white',
-                padding: '0.75rem 1.5rem',
-                borderRadius: '8px',
-                fontWeight: '600',
                 transition: 'transform 0.2s ease, box-shadow 0.2s ease'
               }}
               onMouseOver={(e) => {
                 e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 4px 20px rgba(102, 126, 234, 0.4)';
+                e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.2)';
               }}
               onMouseOut={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
                 e.currentTarget.style.boxShadow = 'none';
               }}
             >
-              🔐 Login with Replit
+              <img 
+                src="/replit-button.png" 
+                alt="Build on Replit" 
+                style={{
+                  height: '44px',
+                  borderRadius: '6px'
+                }}
+              />
             </a>
           </div>
         </div>
