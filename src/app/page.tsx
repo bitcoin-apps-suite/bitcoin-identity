@@ -3,8 +3,6 @@
 import React from 'react';
 import Link from 'next/link';
 import { Shield, Users, Lock, Github, ExternalLink, FileText } from 'lucide-react';
-// Import the Dock component directly from the bridge package
-import { Dock } from '@bitcoin-os/bridge';
 
 export default function HomePage() {
   return (
@@ -182,24 +180,38 @@ export default function HomePage() {
               <FileText size={18} />
               Documentation
             </Link>
+
+            <a 
+              href="https://replit.com/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="btn-primary"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                textDecoration: 'none',
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                color: 'white',
+                padding: '0.75rem 1.5rem',
+                borderRadius: '8px',
+                fontWeight: '600',
+                transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = '0 4px 20px rgba(102, 126, 234, 0.4)';
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
+            >
+              🔐 Login with Replit
+            </a>
           </div>
         </div>
       </div>
-      <Dock 
-        context={{
-          appName: 'Bitcoin Identity',
-          exchangeUrl: '/exchange'
-        }}
-        customApps={[
-          { 
-            name: 'Bitcoin Identity', 
-            icon: Shield, 
-            color: 'text-blue-500', 
-            url: 'http://localhost:4090', 
-            current: true 
-          }
-        ]}
-      />
     </>
   );
 }
