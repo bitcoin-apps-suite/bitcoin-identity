@@ -27,7 +27,7 @@
   "author": "Bitcoin Identity",
   "license": "Open BSV License version 5",
   "dependencies": {
-    "@bitcoin-os/bridge": "file:../../packages/bitcoin-os-bridge",
+    "@bitcoin-os/bridge": "^1.0.1",
     "@bsv/sdk": "^1.7.6",
     "@handcash/handcash-connect": "^0.8.11",
     "@handcash/handcash-sdk": "^0.0.4",
