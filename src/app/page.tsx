@@ -36,13 +36,83 @@ export default function HomePage() {
           <p style={{
             fontSize: '1.25rem',
             color: 'rgba(232, 244, 255, 0.8)',
-            marginBottom: '3rem',
+            marginBottom: '2rem',
             maxWidth: '600px',
-            margin: '0 auto 3rem auto'
+            margin: '0 auto 2rem auto'
           }}>
             Secure identity management and authentication system for Bitcoin SV applications 
             with comprehensive user verification and credential management.
           </p>
+
+          {/* Call to Action - Build Your Own */}
+          <div style={{
+            background: 'rgba(251, 191, 36, 0.1)',
+            border: '2px solid rgba(251, 191, 36, 0.3)',
+            borderRadius: '16px',
+            padding: '2rem',
+            marginBottom: '3rem',
+            maxWidth: '700px',
+            margin: '0 auto 3rem auto'
+          }}>
+            <h2 style={{
+              fontSize: '1.5rem',
+              color: '#fbbf24',
+              marginBottom: '1rem',
+              textAlign: 'center'
+            }}>
+              🚀 Build Your Own Bitcoin Identity App
+            </h2>
+            <p style={{
+              color: 'rgba(232, 244, 255, 0.9)',
+              marginBottom: '1.5rem',
+              textAlign: 'center',
+              lineHeight: '1.6'
+            }}>
+              Create secure identity systems using open-source Bitcoin libraries. 
+              All code is auditable for security and fully customizable.
+            </p>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginBottom: '1rem'
+            }}>
+              <a 
+                href="https://replit.com/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-block',
+                  textDecoration: 'none',
+                  transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-3px)';
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.3)';
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+              >
+                <img 
+                  src="/replit-button.png" 
+                  alt="Build on Replit" 
+                  style={{
+                    height: '48px',
+                    borderRadius: '8px'
+                  }}
+                />
+              </a>
+            </div>
+            <p style={{
+              color: 'rgba(232, 244, 255, 0.7)',
+              fontSize: '0.9rem',
+              textAlign: 'center',
+              margin: 0
+            }}>
+              Start building with auditable cryptography and transparent protocols
+            </p>
+          </div>
 
           {/* Quick Actions */}
           <div style={{
@@ -216,34 +286,6 @@ export default function HomePage() {
               <FileText size={18} />
               Documentation
             </Link>
-
-            <a 
-              href="https://replit.com/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              style={{
-                display: 'inline-block',
-                textDecoration: 'none',
-                transition: 'transform 0.2s ease, box-shadow 0.2s ease'
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.2)';
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
-            >
-              <img 
-                src="/replit-button.png" 
-                alt="Build on Replit" 
-                style={{
-                  height: '44px',
-                  borderRadius: '6px'
-                }}
-              />
-            </a>
           </div>
         </div>
       </div>
