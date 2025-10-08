@@ -195,7 +195,7 @@ export default function HomePage() {
             name: 'Bitcoin Identity', 
             icon: Shield, 
             color: 'text-blue-500', 
-            url: '/', 
+            url: 'http://localhost:4090', 
             current: true 
           }
         ]}
