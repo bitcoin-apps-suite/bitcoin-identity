@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Shield, Users, Lock, Github, ExternalLink, FileText } from 'lucide-react';
 // Import the Dock component directly from the bridge package
-import Dock from '@bitcoin-os/bridge/components/Dock';
+import { Dock } from '@bitcoin-os/bridge';
 
 export default function HomePage() {
   return (
