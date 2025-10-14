@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Shield, Users, Lock, Github, ExternalLink, FileText } from 'lucide-react';
-import Dock from '../components/Dock';
+import DockManager from '../components/DockManager';
 
 export default function HomePage() {
   return (
@@ -289,21 +289,7 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-      <Dock 
-        context={{
-          appName: 'Bitcoin Identity',
-          exchangeUrl: '/exchange'
-        }}
-        customApps={[
-          { 
-            name: 'Bitcoin Identity', 
-            icon: Shield, 
-            color: 'text-blue-500', 
-            url: 'http://localhost:4090', 
-            current: true 
-          }
-        ]}
-      />
+      <DockManager />
     </>
   );
 }
