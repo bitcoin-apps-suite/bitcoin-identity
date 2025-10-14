@@ -146,7 +146,7 @@ export default function HomePage() {
               </div>
             </Link>
 
-            <Link href="/authentication" style={{ textDecoration: 'none' }}>
+            <Link href="/compliance" style={{ textDecoration: 'none' }}>
               <div className="card" style={{
                 padding: '2rem',
                 textAlign: 'left',
@@ -163,15 +163,15 @@ export default function HomePage() {
               }}>
                 <Lock size={32} style={{ color: '#3b82f6', marginBottom: '1rem' }} />
                 <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: '#3b82f6' }}>
-                  Authentication
+                  KYC/AML Compliance
                 </h3>
                 <p style={{ color: 'rgba(232, 244, 255, 0.7)' }}>
-                  Multi-factor authentication with Bitcoin cryptographic signatures and secure login.
+                  Regulatory compliance dashboard with real-time risk assessment and automated flagging.
                 </p>
               </div>
             </Link>
 
-            <Link href="/profiles" style={{ textDecoration: 'none' }}>
+            <Link href="/assets" style={{ textDecoration: 'none' }}>
               <div className="card" style={{
                 padding: '2rem',
                 textAlign: 'left',
@@ -188,10 +188,10 @@ export default function HomePage() {
               }}>
                 <Users size={32} style={{ color: '#3b82f6', marginBottom: '1rem' }} />
                 <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: '#3b82f6' }}>
-                  Profile Management
+                  Asset Registry
                 </h3>
                 <p style={{ color: 'rgba(232, 244, 255, 0.7)' }}>
-                  Comprehensive user profile and credential management with secure data storage.
+                  Track ownership of real estate, vehicles, IP, and other assets on the BSV blockchain.
                 </p>
               </div>
             </Link>

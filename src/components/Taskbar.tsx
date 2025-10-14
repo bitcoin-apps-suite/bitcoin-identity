@@ -62,33 +62,35 @@ export default function Taskbar() {
     {
       label: 'Identity',
       items: [
-        { label: 'Create Identity', shortcut: '⌘I', action: () => window.location.href = '/identity' },
-        { label: 'Verify Identity', action: () => console.log('Verify identity') },
+        { label: 'Identity Verification', shortcut: '⌘I', action: () => window.location.href = '/identity' },
+        { label: 'Asset Registry', action: () => window.location.href = '/assets' },
         { divider: true },
-        { label: 'Identity Management', action: () => console.log('Identity management') },
-        { label: 'Credential Store', action: () => console.log('Credential store') },
+        { label: 'KYC/AML Compliance', action: () => window.location.href = '/compliance' },
+        { label: 'Document Upload', action: () => window.location.href = '/identity' },
         { divider: true },
-        { label: 'Identity Verification', action: () => console.log('Identity verification') }
+        { label: 'Government ID Verification', action: () => window.location.href = '/identity' }
       ]
     },
     {
-      label: 'Authentication',
+      label: 'Assets',
       items: [
-        { label: 'Login System', shortcut: '⌘A', action: () => window.location.href = '/authentication' },
-        { label: 'Multi-Factor Auth', action: () => console.log('Multi-factor auth') },
+        { label: 'Asset Registry', shortcut: '⌘A', action: () => window.location.href = '/assets' },
+        { label: 'Real Estate', action: () => window.location.href = '/assets' },
         { divider: true },
-        { label: 'Crypto Signatures', action: () => console.log('Crypto signatures') },
-        { label: 'Session Management', action: () => console.log('Session management') }
+        { label: 'Vehicles', action: () => window.location.href = '/assets' },
+        { label: 'Intellectual Property', action: () => window.location.href = '/assets' },
+        { divider: true },
+        { label: 'Financial Assets', action: () => window.location.href = '/assets' }
       ]
     },
     {
-      label: 'Profiles',
+      label: 'Compliance',
       items: [
-        { label: 'User Profiles', action: () => window.location.href = '/profiles' },
-        { label: 'Profile Settings', action: () => console.log('Profile settings') },
+        { label: 'KYC/AML Dashboard', action: () => window.location.href = '/compliance' },
+        { label: 'Risk Assessment', action: () => window.location.href = '/compliance' },
         { divider: true },
-        { label: 'Data Management', action: () => console.log('Data management') },
-        { label: 'Privacy Controls', action: () => console.log('Privacy controls') }
+        { label: 'Regulatory Reports', action: () => window.location.href = '/compliance' },
+        { label: 'Flagged Users', action: () => window.location.href = '/compliance' }
       ]
     },
     {

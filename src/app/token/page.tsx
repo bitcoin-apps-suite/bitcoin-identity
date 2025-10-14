@@ -1,268 +1,333 @@
-import React from 'react';
-import { DollarSign, TrendingUp, Users, PieChart, Award, Send, Gift } from 'lucide-react';
+'use client';
 
-export default function TokenPage() {
-  const tokenStats = {
-    name: '$BID',
-    symbol: 'BID',
-    totalSupply: '1,000,000,000',
-    circulating: '650,000,000',
-    price: '$0.045',
-    marketCap: '$29.25M',
-    holders: '1,247',
-    change24h: '+5.2%'
-  };
+import React, { useState, useEffect } from 'react';
+import './TokenPage.css';
+import Footer from '../../components/Footer';
 
-  const distribution = [
-    { category: 'Public Sale', percentage: 40, amount: '400,000,000', color: '#3b82f6' },
-    { category: 'Development', percentage: 25, amount: '250,000,000', color: '#00cc66' },
-    { category: 'Marketing', percentage: 15, amount: '150,000,000', color: '#009944' },
-    { category: 'Team', percentage: 10, amount: '100,000,000', color: '#007722' },
-    { category: 'Reserve', percentage: 10, amount: '100,000,000', color: '#005500' }
-  ];
+const TokenPage: React.FC = () => {
+  const [devSidebarCollapsed, setDevSidebarCollapsed] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem('devSidebarCollapsed');
+    setDevSidebarCollapsed(saved === 'true');
+    setIsMobile(window.innerWidth <= 768);
+  }, []);
+
+  useEffect(() => {
+    // Listen for storage changes to detect sidebar collapse state
+    const handleStorageChange = () => {
+      const saved = localStorage.getItem('devSidebarCollapsed');
+      setDevSidebarCollapsed(saved === 'true');
+    };
+    
+    // Handle window resize
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('resize', handleResize);
+    
+    // Check for sidebar state changes via polling
+    const checkSidebarState = setInterval(() => {
+      const saved = localStorage.getItem('devSidebarCollapsed');
+      setDevSidebarCollapsed(saved === 'true');
+    }, 100);
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('resize', handleResize);
+      clearInterval(checkSidebarState);
+    };
+  }, []);
 
   return (
-    <div style={{
-      padding: '2rem',
-      maxWidth: '1400px',
-      margin: '0 auto',
-      color: '#e8ffe8'
-    }}>
-      {/* Header */}
-      <div style={{ marginBottom: '2rem' }}>
-        <h1 style={{
-          fontSize: '2.5rem',
-          fontWeight: 'bold',
-          marginBottom: '0.5rem',
-          color: '#3b82f6'
-        }}>
-          {tokenStats.name} Token
-        </h1>
-        <p style={{ color: 'rgba(232, 255, 232, 0.7)', fontSize: '1.1rem' }}>
-          Native utility token for your Bitcoin Identity ecosystem
-        </p>
-      </div>
+    <div className="App">
+      <div className={`token-page ${!isMobile && !devSidebarCollapsed ? 'with-sidebar-expanded' : ''} ${!isMobile && devSidebarCollapsed ? 'with-sidebar-collapsed' : ''}`}>
+      <div className="token-container">
+        {/* Hero Section */}
+        <section className="token-hero">
+          <h1><span style={{color: '#ffffff'}}>The</span> <span style={{color: '#3b82f6'}}>Bitcoin Identity</span> <span style={{color: '#ffffff'}}>Token</span></h1>
+          <p className="token-tagline">
+            Decentralized identity meets sustainable economics
+          </p>
+          <div className="token-badge">$BID</div>
+        </section>
 
-      {/* Token Stats Grid */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-        gap: '1rem',
-        marginBottom: '2rem'
-      }}>
-        <div className="card" style={{ padding: '1.5rem', textAlign: 'center' }}>
-          <DollarSign size={24} style={{ color: '#3b82f6', marginBottom: '0.5rem' }} />
-          <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#3b82f6' }}>
-            {tokenStats.price}
+        {/* Philosophy Section */}
+        <section className="philosophy-section">
+          <h2>Our Decentralized Identity Philosophy</h2>
+          <div className="philosophy-content">
+            <p>
+              Bitcoin Identity is an <strong>open-source project</strong> building the future of 
+              decentralized identity on Bitcoin. Our mission is to create a truly sovereign 
+              digital identity ecosystem where users control their data.
+            </p>
+            <p>
+              The $BID token represents our approach to creating a sustainable economic model that 
+              rewards contributors while maintaining decentralization and user sovereignty.
+            </p>
+            <div className="philosophy-points">
+              <div className="point">
+                <h3>Sovereign Identity</h3>
+                <p>Users own and control their identity data</p>
+              </div>
+              <div className="point">
+                <h3>Community Driven</h3>
+                <p>Contributors earn tokens through meaningful work</p>
+              </div>
+              <div className="point">
+                <h3>Bitcoin Native</h3>
+                <p>Built on Bitcoin for maximum security and permanence</p>
+              </div>
+            </div>
           </div>
-          <div style={{ color: 'rgba(232, 255, 232, 0.7)' }}>Current Price</div>
-          <div style={{ 
-            color: tokenStats.change24h.startsWith('+') ? '#3b82f6' : '#ff4444',
-            fontSize: '0.9rem',
-            marginTop: '0.25rem'
-          }}>
-            {tokenStats.change24h} (24h)
-          </div>
-        </div>
+        </section>
 
-        <div className="card" style={{ padding: '1.5rem', textAlign: 'center' }}>
-          <TrendingUp size={24} style={{ color: '#3b82f6', marginBottom: '0.5rem' }} />
-          <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#3b82f6' }}>
-            {tokenStats.marketCap}
+        {/* Token Model Section */}
+        <section className="token-model-section">
+          <h2>The $BID Token Model</h2>
+          <div className="model-card">
+            <h3>How It Works</h3>
+            <ul>
+              <li>
+                <strong>Token Distribution:</strong> Tokens are allocated to developers 
+                who contribute meaningful code that gets merged into production
+              </li>
+              <li>
+                <strong>Identity Services:</strong> The Bitcoin Identity Corporation LTD intends to distribute 
+                dividends to token holders from identity verification and premium service revenues
+              </li>
+              <li>
+                <strong>Contribution = Ownership:</strong> Build value, receive tokens, share in success
+              </li>
+              <li>
+                <strong>Transparent Allocation:</strong> All token grants are recorded on-chain via Bitcoin
+              </li>
+            </ul>
           </div>
-          <div style={{ color: 'rgba(232, 255, 232, 0.7)' }}>Market Cap</div>
-        </div>
 
-        <div className="card" style={{ padding: '1.5rem', textAlign: 'center' }}>
-          <Users size={24} style={{ color: '#3b82f6', marginBottom: '0.5rem' }} />
-          <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#3b82f6' }}>
-            {tokenStats.holders}
+          <div className="model-card warning">
+            <h3>Important Notices</h3>
+            <ul>
+              <li>
+                <strong>No Guarantees:</strong> Token allocation is entirely discretionary with no promises 
+                of distribution for any particular contribution
+              </li>
+              <li>
+                <strong>Not Employment:</strong> Contributing and receiving tokens does not constitute 
+                an employment relationship or contract
+              </li>
+              <li>
+                <strong>Not a Public Offering:</strong> This is not a solicitation for investment or 
+                capital raising. $BID tokens are rewards for contribution, not investment instruments
+              </li>
+              <li>
+                <strong>Future Equity:</strong> The Bitcoin Identity Corporation LTD may incorporate and offer 
+                regulated equity shares separately from the token system
+              </li>
+            </ul>
           </div>
-          <div style={{ color: 'rgba(232, 255, 232, 0.7)' }}>Token Holders</div>
-        </div>
+        </section>
 
-        <div className="card" style={{ padding: '1.5rem', textAlign: 'center' }}>
-          <PieChart size={24} style={{ color: '#3b82f6', marginBottom: '0.5rem' }} />
-          <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#3b82f6' }}>
-            {tokenStats.circulating}
-          </div>
-          <div style={{ color: 'rgba(232, 255, 232, 0.7)' }}>Circulating Supply</div>
-          <div style={{ fontSize: '0.8rem', color: 'rgba(232, 255, 232, 0.5)', marginTop: '0.25rem' }}>
-            of {tokenStats.totalSupply} total
-          </div>
-        </div>
-      </div>
+        {/* Business Model Section */}
+        <section className="business-section">
+          <h2>The Bitcoin Identity Corporation LTD</h2>
+          <div className="business-content">
+            <p className="intro">
+              Our vision is to create sustainable decentralized identity services through a hybrid model that 
+              preserves user sovereignty while generating value.
+            </p>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
-        {/* Token Distribution */}
-        <div className="card" style={{ padding: '1.5rem' }}>
-          <h2 style={{ 
-            fontSize: '1.25rem', 
-            marginBottom: '1rem',
-            color: '#3b82f6',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem'
-          }}>
-            <PieChart size={20} />
-            Token Distribution
-          </h2>
-          
-          <div style={{ marginBottom: '1rem' }}>
-            {distribution.map((item, index) => (
-              <div key={index} style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                padding: '0.75rem 0',
-                borderBottom: index < distribution.length - 1 ? '1px solid rgba(0, 255, 136, 0.1)' : 'none'
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <div style={{
-                    width: '12px',
-                    height: '12px',
-                    backgroundColor: item.color,
-                    borderRadius: '2px'
-                  }} />
-                  <span>{item.category}</span>
+            <div className="business-model">
+              <h3>Revenue Model</h3>
+              <div className="revenue-streams">
+                <div className="stream">
+                  <h4>Free Tier</h4>
+                  <p>Basic identity services</p>
+                  <p className="price">$0/month</p>
                 </div>
-                <div style={{ textAlign: 'right' }}>
-                  <div style={{ fontWeight: '600' }}>{item.percentage}%</div>
-                  <div style={{ fontSize: '0.8rem', color: 'rgba(232, 255, 232, 0.7)' }}>
-                    {item.amount}
-                  </div>
+                <div className="stream featured">
+                  <h4>Pro Tier</h4>
+                  <p>Advanced identity features, verification</p>
+                  <p className="price">$19/month</p>
+                </div>
+                <div className="stream">
+                  <h4>Enterprise</h4>
+                  <p>Custom deployment, SLA, support</p>
+                  <p className="price">$199/month</p>
                 </div>
               </div>
-            ))}
-          </div>
-
-          {/* Visual Distribution Bar */}
-          <div style={{
-            height: '20px',
-            borderRadius: '10px',
-            overflow: 'hidden',
-            display: 'flex',
-            marginTop: '1rem'
-          }}>
-            {distribution.map((item, index) => (
-              <div
-                key={index}
-                style={{
-                  width: `${item.percentage}%`,
-                  backgroundColor: item.color,
-                  height: '100%'
-                }}
-                title={`${item.category}: ${item.percentage}%`}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Token Utility */}
-        <div className="card" style={{ padding: '1.5rem' }}>
-          <h2 style={{ 
-            fontSize: '1.25rem', 
-            marginBottom: '1rem',
-            color: '#3b82f6',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem'
-          }}>
-            <Award size={20} />
-            Token Utility
-          </h2>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <div style={{
-              padding: '1rem',
-              border: '1px solid rgba(0, 255, 136, 0.1)',
-              borderRadius: '8px'
-            }}>
-              <h3 style={{ fontSize: '1rem', marginBottom: '0.5rem', color: '#3b82f6' }}>
-                Exchange Fees
-              </h3>
-              <p style={{ color: 'rgba(232, 255, 232, 0.7)', fontSize: '0.9rem' }}>
-                Use tokens to pay reduced trading fees on the exchange
-              </p>
+              
+              <h3 style={{marginTop: '40px'}}>Identity Services Revenue</h3>
+              <div className="revenue-streams">
+                <div className="stream">
+                  <h4>Verification Services</h4>
+                  <p>Identity verification and attestation</p>
+                  <p className="price">2.5% fee</p>
+                </div>
+                <div className="stream featured">
+                  <h4>Credential Trading</h4>
+                  <p>Secondary market for identity credentials</p>
+                  <p className="price">1.5% fee</p>
+                </div>
+                <div className="stream">
+                  <h4>Data Marketplace</h4>
+                  <p>Verified data and reputation services</p>
+                  <p className="price">3% fee</p>
+                </div>
+              </div>
             </div>
 
-            <div style={{
-              padding: '1rem',
-              border: '1px solid rgba(0, 255, 136, 0.1)',
-              borderRadius: '8px'
-            }}>
-              <h3 style={{ fontSize: '1rem', marginBottom: '0.5rem', color: '#3b82f6' }}>
-                Governance Voting
-              </h3>
-              <p style={{ color: 'rgba(232, 255, 232, 0.7)', fontSize: '0.9rem' }}>
-                Participate in protocol governance and feature proposals
-              </p>
-            </div>
-
-            <div style={{
-              padding: '1rem',
-              border: '1px solid rgba(0, 255, 136, 0.1)',
-              borderRadius: '8px'
-            }}>
-              <h3 style={{ fontSize: '1rem', marginBottom: '0.5rem', color: '#3b82f6' }}>
-                Staking Rewards
-              </h3>
-              <p style={{ color: 'rgba(232, 255, 232, 0.7)', fontSize: '0.9rem' }}>
-                Stake tokens to earn rewards and support network security
-              </p>
-            </div>
-
-            <div style={{
-              padding: '1rem',
-              border: '1px solid rgba(0, 255, 136, 0.1)',
-              borderRadius: '8px'
-            }}>
-              <h3 style={{ fontSize: '1rem', marginBottom: '0.5rem', color: '#3b82f6' }}>
-                Premium Features
-              </h3>
-              <p style={{ color: 'rgba(232, 255, 232, 0.7)', fontSize: '0.9rem' }}>
-                Access advanced features and analytics tools
+            <div className="value-flow">
+              <h3>Value Flow</h3>
+              <div className="flow-diagram">
+                <div className="flow-item">
+                  <span>Subscriptions + Service fees</span>
+                  <span className="arrow">→</span>
+                </div>
+                <div className="flow-item">
+                  <span>Revenue to Bitcoin Identity Ltd</span>
+                  <span className="arrow">→</span>
+                </div>
+                <div className="flow-item">
+                  <span>Dividends to $BID holders</span>
+                  <span className="arrow">→</span>
+                </div>
+                <div className="flow-item">
+                  <span>Contributors rewarded for building</span>
+                </div>
+              </div>
+              <p style={{textAlign: 'center', marginTop: '20px', fontSize: '14px', color: 'rgba(255, 255, 255, 0.6)'}}>
+                The Bitcoin Identity ecosystem enables secure, decentralized identity management,
+                generating platform fees that contribute to the ecosystem's sustainability.
               </p>
             </div>
           </div>
-        </div>
-      </div>
+        </section>
 
-      {/* Token Actions */}
-      <div className="card" style={{ padding: '2rem', marginTop: '2rem', textAlign: 'center' }}>
-        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#3b82f6' }}>
-          Token Actions
-        </h3>
-        <p style={{ color: 'rgba(232, 255, 232, 0.7)', marginBottom: '1.5rem' }}>
-          Manage your tokens and participate in the ecosystem
-        </p>
-        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <button className="btn-primary" style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem'
-          }}>
-            <Send size={18} />
-            Transfer Tokens
-          </button>
-          <button className="btn-primary" style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem'
-          }}>
-            <Award size={18} />
-            Stake Tokens
-          </button>
-          <button className="btn-primary" style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem'
-          }}>
-            <Gift size={18} />
-            Claim Rewards
-          </button>
-        </div>
+        {/* How to Contribute Section */}
+        <section className="contribute-section">
+          <h2>How to Earn $BID Tokens</h2>
+          <div className="contribute-steps">
+            <div className="step">
+              <div className="step-number">1</div>
+              <h3>Fork & Build</h3>
+              <p>Fork the repository and implement identity features, fixes, or improvements</p>
+            </div>
+            <div className="step">
+              <div className="step-number">2</div>
+              <h3>Submit PR</h3>
+              <p>Create a pull request with clear description and documentation</p>
+            </div>
+            <div className="step">
+              <div className="step-number">3</div>
+              <h3>Get Merged</h3>
+              <p>Quality code that adds value gets merged into production</p>
+            </div>
+            <div className="step">
+              <div className="step-number">4</div>
+              <h3>Receive Tokens</h3>
+              <p>Tokens allocated based on contribution impact and quality</p>
+            </div>
+          </div>
+
+          <div className="contribution-examples">
+            <h3>What We Value</h3>
+            <ul>
+              <li>✅ Identity protocol implementation</li>
+              <li>✅ Security and privacy enhancements</li>
+              <li>✅ Cryptographic improvements</li>
+              <li>✅ Documentation and tests</li>
+              <li>✅ UI/UX improvements</li>
+              <li>✅ Integration and interoperability</li>
+            </ul>
+          </div>
+        </section>
+
+        {/* Token Stats Section */}
+        <section className="stats-section">
+          <h2>Token Statistics</h2>
+          <div className="stats-grid">
+            <div className="stat">
+              <h3>Total Supply</h3>
+              <p className="stat-value">1,000,000,000</p>
+              <p className="stat-label">$BID tokens</p>
+            </div>
+            <div className="stat">
+              <h3>Distributed</h3>
+              <p className="stat-value">0</p>
+              <p className="stat-label">Tokens allocated</p>
+            </div>
+            <div className="stat">
+              <h3>Contributors</h3>
+              <p className="stat-value">1</p>
+              <p className="stat-label">Active developers</p>
+            </div>
+            <div className="stat">
+              <h3>Network</h3>
+              <p className="stat-value">Bitcoin</p>
+              <p className="stat-label">Blockchain</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Legal Section */}
+        <section className="legal-section">
+          <h2>Legal & Regulatory Notice</h2>
+          <div className="legal-content">
+            <p>
+              <strong>Revenue Sharing Model:</strong> The $BID token is designed to enable revenue 
+              sharing with contributors through dividend distributions. Token holders may receive dividends 
+              based on platform revenues from identity services and verification fees.
+            </p>
+            <p>
+              <strong>Trading & Liquidity:</strong> The $BID token is intended to be freely tradable 
+              on the Bitcoin Identity Exchange and associated platforms. We encourage an active secondary 
+              market to provide liquidity and price discovery for contributors' work.
+            </p>
+            <p>
+              <strong>$BIDSHARE Fundraising:</strong> The Bitcoin Identity Corporation LTD intends to issue $BIDSHARE 
+              tokens as a fundraising mechanism. These tokens will represent participation in the platform's 
+              success and may be offered through appropriate channels.
+            </p>
+            <p>
+              By participating in the token ecosystem, you acknowledge that token allocation is discretionary, 
+              regulatory frameworks may evolve, and you should conduct your own due diligence regarding 
+              tax and legal implications in your jurisdiction.
+            </p>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="cta-section">
+          <h2>Ready to Build the Future of Identity?</h2>
+          <div className="cta-buttons">
+            <a 
+              href="https://github.com/bitcoin-apps-suite/bitcoin-identity" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="cta-btn primary"
+            >
+              <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+              </svg>
+              View on GitHub
+            </a>
+            <a 
+              href="/docs" 
+              className="cta-btn secondary"
+            >
+              Read Developer Docs
+            </a>
+          </div>
+        </section>
       </div>
     </div>
+    <Footer />
+    </div>
   );
-}
+};
+
+export default TokenPage;
