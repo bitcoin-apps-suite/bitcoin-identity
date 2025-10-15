@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react'
 // import { useSession, signOut } from 'next-auth/react' // TODO: Add authentication integration
 import { Menu, X } from 'lucide-react'
+import UnifiedAuth from './UnifiedAuth'
 
 interface DropdownItem {
   label?: string
@@ -490,17 +491,7 @@ export default function Taskbar() {
         >
           $BID
         </button>
-        {session ? (
-          <>
-            <span>{session.user?.email || 'Connected'}</span>
-            <span style={{ color: '#3b82f6' }}>●</span>
-          </>
-        ) : (
-          <>
-            <span>Not Connected</span>
-            <span style={{ color: '#ff4444', opacity: 0.6 }}>●</span>
-          </>
-        )}
+        <UnifiedAuth />
       </div>
 
       {/* Mobile Menu Overlay */}

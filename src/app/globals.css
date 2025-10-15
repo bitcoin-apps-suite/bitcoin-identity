@@ -166,3 +166,31 @@ button:active {
 .theme-hover:hover {
   background-color: var(--color-hover);
 }
+
+/* Layout adjustments for sidebars */
+.app-container {
+  padding-left: 0;
+  padding-right: 0;
+  min-height: 100vh;
+  transition: padding 0.3s ease;
+}
+
+/* When dev sidebar is open */
+.app-container.with-dev-sidebar {
+  padding-left: 280px;
+  padding-right: 280px; /* Space for ticker sidebar */
+}
+
+/* When dev sidebar is collapsed */
+.app-container.with-dev-sidebar-collapsed {
+  padding-left: 60px;
+  padding-right: 280px; /* Space for ticker sidebar */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .app-container.with-dev-sidebar,
+  .app-container.with-dev-sidebar-collapsed {
+    padding-right: 0; /* Hide ticker on smaller screens */
+  }
+}

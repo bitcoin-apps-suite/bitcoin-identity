@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import DevSidebar from './DevSidebar';
 import Taskbar from './Taskbar';
+import TickerSidebar from './TickerSidebar';
+import UnifiedAuth from './UnifiedAuth';
 import { useBitcoinOS } from '@/lib/utils/useBitcoinOS';
 
 interface DevLayoutProps {
@@ -34,6 +36,7 @@ const DevLayout: React.FC<DevLayoutProps> = ({ children }) => {
     <>
       {!isInOS && <Taskbar />}
       {!isInOS && <DevSidebar onCollapsedChange={handleCollapsedChange} />}
+      {!isInOS && <TickerSidebar userHandle="b0ase" />}
       <div className={`app-container ${isInOS ? '' : (isCollapsed ? 'with-dev-sidebar-collapsed' : 'with-dev-sidebar')}`}>
         {children}
       </div>
