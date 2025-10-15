@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import './ContributorsPage.css';
-import Footer from '../../components/Footer';
 import { Github, Award, Star, GitPullRequest, Code, Trophy, Users, Target } from 'lucide-react';
 
 export default function ContributorsPage() {
@@ -367,7 +366,6 @@ export default function ContributorsPage() {
           </section>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

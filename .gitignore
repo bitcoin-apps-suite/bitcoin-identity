@@ -44,3 +44,18 @@ next-env.d.ts
 
 # OS
 Thumbs.db
+
+# Screenshots and images (excluding essential assets)
+*Screenshot*
+*screenshot*
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+# But allow essential public assets
+!public/*.png
+!public/*.jpg
+!public/*.jpeg
+!public/*.gif
+!public/*.webp

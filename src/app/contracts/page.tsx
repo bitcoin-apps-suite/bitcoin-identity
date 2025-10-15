@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { FileText, Code, Play, Eye, Plus, Settings, Zap, Shield, Github, Target } from 'lucide-react';
 import './ContractsPage.css';
-import Footer from '../../components/Footer';
 
 export default function ContractsPage() {
   const [devSidebarCollapsed, setDevSidebarCollapsed] = useState(false);
@@ -257,7 +256,6 @@ export default function ContractsPage() {
           </div>
         </section>
       </div>
-      <Footer />
     </div>
   );
 }

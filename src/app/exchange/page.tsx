@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { TrendingUp, BarChart3, Activity, Users, DollarSign, ArrowUpDown } from 'lucide-react';
 import './ExchangePage.css';
-import Footer from '../../components/Footer';
 
 export default function ExchangePage() {
   const [devSidebarCollapsed, setDevSidebarCollapsed] = useState(false);
@@ -189,7 +188,6 @@ export default function ExchangePage() {
         </section>
       </div>
     </div>
-    <Footer />
     </div>
   );
 }

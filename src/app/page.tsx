@@ -1,295 +1,343 @@
 'use client';
 
-import React from 'react';
-import Link from 'next/link';
-import { Shield, Users, Lock, Github, ExternalLink, FileText } from 'lucide-react';
+import React, { useState } from 'react';
+import './HomePage.css';
+
+import { Upload, Shield, Key, Eye, EyeOff, Lock, FileText, Image, CheckCircle, AlertCircle } from 'lucide-react';
 import DockManager from '../components/DockManager';
 
 export default function HomePage() {
+  const [dragActive, setDragActive] = useState(false);
+  const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [encryptionStep, setEncryptionStep] = useState('upload'); // 'upload', 'encrypt', 'complete'
+  const [masterImage, setMasterImage] = useState(null);
+
+  const handleDrag = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === "dragenter" || e.type === "dragover") {
+      setDragActive(true);
+    } else if (e.type === "dragleave") {
+      setDragActive(false);
+    }
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+    
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleFiles(e.dataTransfer.files);
+    }
+  };
+
+  const handleFiles = (files) => {
+    const fileArray = Array.from(files);
+    setUploadedFiles(prev => [...prev, ...fileArray]);
+  };
+
+  const identityTemplateFields = [
+    { category: 'Personal', fields: ['Full Name', 'Date of Birth', 'Age', 'Gender', 'Nationality', 'Place of Birth'] },
+    { category: 'Contact', fields: ['Email Address', 'Phone Number', 'Physical Address', 'City', 'State/Province', 'Country', 'Postal Code'] },
+    { category: 'Identity Documents', fields: ['Government ID Number', 'Passport Number', 'Driver\'s License', 'Social Security Number'] },
+    { category: 'Financial', fields: ['Bank Account Numbers', 'Credit Score Range', 'Employment Status', 'Annual Income Range'] },
+    { category: 'Verification', fields: ['Utility Bills', 'Bank Statements', 'Employment Letters', 'Educational Certificates'] },
+    { category: 'Biometric', fields: ['Facial Recognition Hash', 'Fingerprint Hash', 'Voice Pattern Hash'] },
+    { category: 'Social', fields: ['Social Media Profiles', 'Professional Networks', 'References'] },
+    { category: 'Preferences', fields: ['Communication Preferences', 'Privacy Settings', 'Consent Records'] }
+  ];
+
   return (
-    <>
-      <div style={{
-        minHeight: '100vh',
-        background: 'linear-gradient(135deg, #0f1829 0%, #0a1220 100%)',
-        color: '#e8f4ff',
-        padding: '2rem'
-      }}>
-        {/* Hero Section */}
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          textAlign: 'center',
-          paddingTop: '4rem'
-        }}>
-          <h1 style={{
-            fontSize: '3rem',
-            fontWeight: 'bold',
-            marginBottom: '1rem',
-            background: 'linear-gradient(135deg, #3b82f6, #fbbf24)',
-            backgroundClip: 'text',
-            WebkitBackgroundClip: 'text',
-            color: 'transparent'
-          }}>
-            Bitcoin Identity
-          </h1>
-          
-          <p style={{
-            fontSize: '1.25rem',
-            color: 'rgba(232, 244, 255, 0.8)',
-            marginBottom: '2rem',
-            maxWidth: '600px',
-            margin: '0 auto 2rem auto'
-          }}>
-            Secure identity management and authentication system for Bitcoin SV applications 
-            with comprehensive user verification and credential management.
-          </p>
+    <div className="home-page">
+      {/* Bitcoin Writer Style Header */}
+      <div className="platform-header">
+        <h1><span style={{color: '#3b82f6'}}>Bitcoin Identity</span> Platform</h1>
+        <p className="tagline">Encrypt Once, Selectively Reveal Forever on the Blockchain</p>
+      </div>
 
-          {/* Call to Action - Build Your Own */}
-          <div style={{
-            background: 'rgba(251, 191, 36, 0.1)',
-            border: '2px solid rgba(251, 191, 36, 0.3)',
-            borderRadius: '16px',
-            padding: '2rem',
-            marginBottom: '3rem',
-            maxWidth: '700px',
-            margin: '0 auto 3rem auto'
-          }}>
-            <h2 style={{
-              fontSize: '1.5rem',
-              color: '#fbbf24',
-              marginBottom: '1rem',
-              textAlign: 'center'
-            }}>
-              🚀 Build Your Own Bitcoin Identity App
-            </h2>
-            <p style={{
-              color: 'rgba(232, 244, 255, 0.9)',
-              marginBottom: '1.5rem',
-              textAlign: 'center',
-              lineHeight: '1.6'
-            }}>
-              Create secure identity systems using open-source Bitcoin libraries. 
-              All code is auditable for security and fully customizable.
-            </p>
-            <div style={{
-              display: 'flex',
-              justifyContent: 'center',
-              marginBottom: '1rem'
-            }}>
-              <a 
-                href="https://replit.com/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                style={{
-                  display: 'inline-block',
-                  textDecoration: 'none',
-                  transition: 'transform 0.2s ease, box-shadow 0.2s ease'
-                }}
-                onMouseOver={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-3px)';
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.3)';
-                }}
-                onMouseOut={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = 'none';
-                }}
-              >
-                <img 
-                  src="/replit-button.png" 
-                  alt="Build on Replit" 
-                  style={{
-                    height: '48px',
-                    borderRadius: '8px'
-                  }}
-                />
-              </a>
-            </div>
-            <p style={{
-              color: 'rgba(232, 244, 255, 0.7)',
-              fontSize: '0.9rem',
-              textAlign: 'center',
-              margin: 0
-            }}>
-              Start building with auditable cryptography and transparent protocols
+      {/* How It Works Section */}
+      <section className="platform-section">
+        <h2>How It Works</h2>
+        <div className="how-it-works-grid">
+          <div className="step">
+            <div className="step-number">1</div>
+            <h3>Upload Master Image</h3>
+            <p>
+              Choose a personal image that will serve as your cryptographic root. This image 
+              is encrypted locally and its hash becomes your master key for an HD key tree.
             </p>
           </div>
-
-          {/* Quick Actions */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '2rem',
-            margin: '4rem 0'
-          }}>
-            <Link href="/identity" style={{ textDecoration: 'none' }}>
-              <div className="card" style={{
-                padding: '2rem',
-                textAlign: 'left',
-                transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-                cursor: 'pointer'
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.transform = 'translateY(-4px)';
-                e.currentTarget.style.boxShadow = '0 8px 32px rgba(59, 130, 246, 0.2)';
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}>
-                <Shield size={32} style={{ color: '#3b82f6', marginBottom: '1rem' }} />
-                <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: '#3b82f6' }}>
-                  Identity Verification
-                </h3>
-                <p style={{ color: 'rgba(232, 244, 255, 0.7)' }}>
-                  Secure user identity creation and verification with Bitcoin cryptographic signatures.
-                </p>
-              </div>
-            </Link>
-
-            <Link href="/compliance" style={{ textDecoration: 'none' }}>
-              <div className="card" style={{
-                padding: '2rem',
-                textAlign: 'left',
-                transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-                cursor: 'pointer'
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.transform = 'translateY(-4px)';
-                e.currentTarget.style.boxShadow = '0 8px 32px rgba(59, 130, 246, 0.2)';
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}>
-                <Lock size={32} style={{ color: '#3b82f6', marginBottom: '1rem' }} />
-                <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: '#3b82f6' }}>
-                  KYC/AML Compliance
-                </h3>
-                <p style={{ color: 'rgba(232, 244, 255, 0.7)' }}>
-                  Regulatory compliance dashboard with real-time risk assessment and automated flagging.
-                </p>
-              </div>
-            </Link>
-
-            <Link href="/assets" style={{ textDecoration: 'none' }}>
-              <div className="card" style={{
-                padding: '2rem',
-                textAlign: 'left',
-                transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-                cursor: 'pointer'
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.transform = 'translateY(-4px)';
-                e.currentTarget.style.boxShadow = '0 8px 32px rgba(59, 130, 246, 0.2)';
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}>
-                <Users size={32} style={{ color: '#3b82f6', marginBottom: '1rem' }} />
-                <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: '#3b82f6' }}>
-                  Asset Registry
-                </h3>
-                <p style={{ color: 'rgba(232, 244, 255, 0.7)' }}>
-                  Track ownership of real estate, vehicles, IP, and other assets on the BSV blockchain.
-                </p>
-              </div>
-            </Link>
-          </div>
-
-          {/* Build Your Own */}
-          <div style={{
-            background: 'rgba(59, 130, 246, 0.05)',
-            border: '1px solid rgba(59, 130, 246, 0.2)',
-            borderRadius: '12px',
-            padding: '2rem',
-            margin: '4rem 0',
-            textAlign: 'left'
-          }}>
-            <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#3b82f6' }}>
-              Build Your Own Bitcoin Identity App
-            </h2>
-            <p style={{ color: 'rgba(232, 244, 255, 0.8)', marginBottom: '1.5rem', lineHeight: '1.6' }}>
-              Create your own secure identity management system using open-source Bitcoin libraries and tools. 
-              All components can be audited for security and customized for your specific use case.
+          <div className="step">
+            <div className="step-number">2</div>
+            <h3>Encrypt Identity Documents</h3>
+            <p>
+              Upload and encrypt all your identity documents locally. AI extracts data to 
+              populate selective disclosure templates while maintaining complete privacy.
             </p>
-            <div style={{ 
-              background: 'rgba(251, 191, 36, 0.1)', 
-              border: '1px solid rgba(251, 191, 36, 0.3)',
-              borderRadius: '8px',
-              padding: '1.5rem',
-              marginBottom: '1.5rem'
-            }}>
-              <h3 style={{ color: '#fbbf24', marginBottom: '1rem', fontSize: '1.1rem' }}>
-                🛠️ Open Source Security
-              </h3>
-              <ul style={{ listStyle: 'disc', paddingLeft: '1.5rem', color: 'rgba(232, 244, 255, 0.8)' }}>
-                <li style={{ marginBottom: '0.5rem' }}>Auditable cryptographic implementations</li>
-                <li style={{ marginBottom: '0.5rem' }}>Transparent identity verification protocols</li>
-                <li style={{ marginBottom: '0.5rem' }}>No vendor lock-in or hidden dependencies</li>
-                <li style={{ marginBottom: '0.5rem' }}>Community-reviewed security standards</li>
-              </ul>
-            </div>
           </div>
-
-          {/* Getting Started */}
-          <div style={{
-            background: 'rgba(59, 130, 246, 0.05)',
-            border: '1px solid rgba(59, 130, 246, 0.2)',
-            borderRadius: '12px',
-            padding: '2rem',
-            margin: '4rem 0',
-            textAlign: 'left'
-          }}>
-            <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#3b82f6' }}>
-              Getting Started
-            </h2>
-            <ol style={{ listStyle: 'decimal', paddingLeft: '1.5rem', color: 'rgba(232, 255, 232, 0.8)' }}>
-              <li style={{ marginBottom: '0.5rem' }}>Fork this repository and clone it to your local machine</li>
-              <li style={{ marginBottom: '0.5rem' }}>Customize the app name, branding, and metadata in layout.tsx</li>
-              <li style={{ marginBottom: '0.5rem' }}>Configure your identity verification parameters</li>
-              <li style={{ marginBottom: '0.5rem' }}>Set up authentication methods and security policies</li>
-              <li style={{ marginBottom: '0.5rem' }}>Configure user profile management and data storage</li>
-              <li style={{ marginBottom: '0.5rem' }}>Launch your Bitcoin Identity system!</li>
-            </ol>
+          <div className="step">
+            <div className="step-number">3</div>
+            <h3>Blockchain Anchoring</h3>
+            <p>
+              Document hashes are anchored to Bitcoin SV blockchain, creating immutable 
+              proof of existence without revealing any personal information.
+            </p>
           </div>
-
-          {/* Links */}
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: '1rem',
-            flexWrap: 'wrap'
-          }}>
-            <a 
-              href="https://github.com/bitcoin-apps-suite/bitcoin-identity" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="btn-primary"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                textDecoration: 'none'
-              }}
-            >
-              <Github size={18} />
-              View on GitHub
-            </a>
-            
-            <Link href="/docs" className="btn-primary" style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              textDecoration: 'none'
-            }}>
-              <FileText size={18} />
-              Documentation
-            </Link>
+          <div className="step">
+            <div className="step-number">4</div>
+            <h3>Selective Disclosure</h3>
+            <p>
+              Prove specific facts (age {'>'} 21, residency, etc.) without revealing underlying 
+              data using zero-knowledge proofs and use-once signatures.
+            </p>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Upload Interface */}
+      <section className="platform-section">
+        <h2>Create Your Encrypted Identity</h2>
+        
+        {encryptionStep === 'upload' && (
+          <div className="upload-section">
+            <div className="master-image-upload">
+              <h3>
+                <Image size={24} />
+                Step 1: Choose Your Master Image
+              </h3>
+              <p>
+                Select a personal image that you'll always have access to. This will be your cryptographic root key.
+                <strong> Keep this image secure and backed up - it's your identity recovery method.</strong>
+              </p>
+              <div className="upload-zone master-image">
+                <input 
+                  type="file" 
+                  accept="image/*" 
+                  onChange={(e) => {
+                    if (e.target.files[0]) {
+                      setMasterImage(e.target.files[0]);
+                    }
+                  }}
+                  style={{ display: 'none' }}
+                  id="master-image-input"
+                />
+                <label htmlFor="master-image-input" className="upload-label">
+                  {masterImage ? (
+                    <div className="file-selected">
+                      <CheckCircle size={48} />
+                      <span>Master Image Selected: {masterImage.name}</span>
+                    </div>
+                  ) : (
+                    <div className="upload-prompt">
+                      <Image size={48} />
+                      <span>Choose Master Image</span>
+                      <small>This will be your cryptographic root</small>
+                    </div>
+                  )}
+                </label>
+              </div>
+            </div>
+
+            <div className="document-upload">
+              <h3>
+                <FileText size={24} />
+                Step 2: Upload Identity Documents
+              </h3>
+              <p>
+                Upload all relevant identity documents. They will be encrypted locally before any processing.
+              </p>
+              
+              <div 
+                className={`upload-zone ${dragActive ? 'drag-active' : ''}`}
+                onDragEnter={handleDrag}
+                onDragLeave={handleDrag}
+                onDragOver={handleDrag}
+                onDrop={handleDrop}
+              >
+                <input 
+                  type="file" 
+                  multiple 
+                  onChange={(e) => handleFiles(e.target.files)}
+                  style={{ display: 'none' }}
+                  id="file-input"
+                />
+                <label htmlFor="file-input" className="upload-label">
+                  <Upload size={48} />
+                  <span>Drop files here or click to browse</span>
+                  <small>Supports: PDFs, Images, Documents</small>
+                </label>
+              </div>
+
+              {uploadedFiles.length > 0 && (
+                <div className="uploaded-files">
+                  <h4>Uploaded Files ({uploadedFiles.length})</h4>
+                  {uploadedFiles.map((file, index) => (
+                    <div key={index} className="file-item">
+                      <FileText size={20} />
+                      <span>{file.name}</span>
+                      <span className="file-size">({(file.size / 1024 / 1024).toFixed(2)} MB)</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {masterImage && uploadedFiles.length > 0 && (
+              <button 
+                className="cta-btn primary"
+                onClick={() => setEncryptionStep('encrypt')}
+              >
+                <Lock size={20} />
+                Begin Local Encryption
+              </button>
+            )}
+          </div>
+        )}
+
+        {encryptionStep === 'encrypt' && (
+          <div className="encryption-section">
+            <div className="encryption-process">
+              <h3>
+                <Shield size={24} />
+                Encrypting Your Identity Data
+              </h3>
+              <div className="encryption-steps">
+                <div className="encryption-step">
+                  <div className="step-icon">
+                    <Key size={20} />
+                  </div>
+                  <div className="step-info">
+                    <h4>Generating HD Key Tree</h4>
+                    <p>Creating hierarchical deterministic keys from your master image hash...</p>
+                  </div>
+                </div>
+                <div className="encryption-step">
+                  <div className="step-icon">
+                    <Lock size={20} />
+                  </div>
+                  <div className="step-info">
+                    <h4>Encrypting Documents</h4>
+                    <p>All documents are encrypted locally with AES-256 encryption...</p>
+                  </div>
+                </div>
+                <div className="encryption-step">
+                  <div className="step-icon">
+                    <FileText size={20} />
+                  </div>
+                  <div className="step-info">
+                    <h4>Extracting Identity Data</h4>
+                    <p>AI is processing encrypted data to populate identity templates...</p>
+                  </div>
+                </div>
+              </div>
+              <button 
+                className="cta-btn primary"
+                onClick={() => setEncryptionStep('complete')}
+              >
+                Complete Setup
+              </button>
+            </div>
+          </div>
+        )}
+
+        {encryptionStep === 'complete' && (
+          <div className="completion-section">
+            <div className="success-message">
+              <CheckCircle size={64} />
+              <h3>Identity Successfully Created!</h3>
+              <p>Your encrypted identity is now anchored to the Bitcoin SV blockchain.</p>
+            </div>
+          </div>
+        )}
+      </section>
+
+      {/* Identity Template Preview */}
+      <section className="platform-section">
+        <h2>Selective Disclosure Templates</h2>
+        <p className="section-description">
+          Your encrypted data populates standardized identity templates. You can selectively reveal 
+          specific information to meet verification requirements without exposing unnecessary personal details.
+        </p>
+        
+        <div className="template-grid">
+          {identityTemplateFields.slice(0, 4).map((category, index) => (
+            <div key={index} className="template-category">
+              <h3>{category.category}</h3>
+              <div className="template-fields">
+                {category.fields.map((field, fieldIndex) => (
+                  <div key={fieldIndex} className="template-field">
+                    <span className="field-name">{field}</span>
+                    <div className="field-controls">
+                      <button className="reveal-btn" title="Can be selectively revealed">
+                        <Eye size={14} />
+                      </button>
+                      <button className="hide-btn" title="Always private">
+                        <EyeOff size={14} />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="template-example">
+          <h3>Example Use Case</h3>
+          <div className="use-case">
+            <div className="challenge">
+              <AlertCircle size={20} />
+              <span><strong>Verification Request:</strong> "Are you over 21 years old?"</span>
+            </div>
+            <div className="response">
+              <CheckCircle size={20} />
+              <span><strong>Your Response:</strong> "Yes, I am over 21" (cryptographically proven without revealing actual age)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Privacy Features */}
+      <section className="platform-section">
+        <h2>Privacy-First Architecture</h2>
+        <div className="privacy-features">
+          <div className="feature">
+            <div className="feature-icon">
+              <Lock size={32} />
+            </div>
+            <h3>Local Encryption</h3>
+            <p>All encryption happens on your device. Your private keys never leave your control.</p>
+          </div>
+          
+          <div className="feature">
+            <div className="feature-icon">
+              <Key size={32} />
+            </div>
+            <h3>HD Key Derivation</h3>
+            <p>Hierarchical deterministic keys allow infinite use-once signatures from your master image.</p>
+          </div>
+          
+          <div className="feature">
+            <div className="feature-icon">
+              <Eye size={32} />
+            </div>
+            <h3>Selective Disclosure</h3>
+            <p>Prove specific facts without revealing underlying personal information.</p>
+          </div>
+          
+          <div className="feature">
+            <div className="feature-icon">
+              <Shield size={32} />
+            </div>
+            <h3>Zero-Knowledge Proofs</h3>
+            <p>Cryptographically prove statements about yourself without revealing the data itself.</p>
+          </div>
+        </div>
+      </section>
+
+      
       <DockManager />
-    </>
+    </div>
   );
 }

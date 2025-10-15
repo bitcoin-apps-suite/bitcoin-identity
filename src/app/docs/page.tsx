@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { BookOpen, Code, Zap, FileText, ExternalLink, Github } from 'lucide-react';
 import './DocsPage.css';
-import Footer from '../../components/Footer';
 
 export default function DocsPage() {
   const [devSidebarCollapsed, setDevSidebarCollapsed] = useState(false);
@@ -174,7 +173,6 @@ export default function DocsPage() {
           </section>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

@@ -1,0 +1,632 @@
+/* Bitcoin Identity Landing Page - Bitcoin Writer Style with Blue Theme */
+.home-page {
+  width: 100%;
+  padding: 2rem;
+  background: #0a0a0a;
+  color: #ffffff;
+  min-height: 100vh;
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 300;
+}
+
+.home-page > * {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Platform Header - Bitcoin Writer Style with Blue */
+.platform-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding: 3rem 0;
+}
+
+.platform-header h1 {
+  font-size: 42px;
+  font-weight: 200;
+  margin: 0 0 16px 0;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+.tagline {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.4;
+  font-weight: 300;
+}
+
+/* Platform Sections */
+.platform-section {
+  margin-bottom: 4rem;
+}
+
+.platform-section h2 {
+  font-size: 28px;
+  font-weight: 200;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+}
+
+.section-description {
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 40px;
+  font-weight: 300;
+}
+
+/* How It Works Grid */
+.how-it-works-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.step {
+  text-align: center;
+  padding: 30px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.step:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  background: rgba(255, 255, 255, 0.01);
+}
+
+.step-number {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 500;
+  color: #ffffff;
+  margin: 0 auto 20px;
+}
+
+.step h3 {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0 0 15px 0;
+  color: #3b82f6;
+}
+
+.step p {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 300;
+}
+
+/* Upload Section */
+.upload-section {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.master-image-upload,
+.document-upload {
+  margin-bottom: 40px;
+}
+
+.master-image-upload h3,
+.document-upload h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 15px;
+  color: #3b82f6;
+}
+
+.master-image-upload p,
+.document-upload p {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.master-image-upload strong {
+  color: #3b82f6;
+  font-weight: 500;
+}
+
+/* Upload Zones */
+.upload-zone {
+  border: 2px dashed rgba(59, 130, 246, 0.3);
+  border-radius: 12px;
+  padding: 40px 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.01);
+  cursor: pointer;
+}
+
+.upload-zone:hover {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.02);
+}
+
+.upload-zone.drag-active {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.upload-zone.master-image {
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+.upload-label {
+  display: block;
+  cursor: pointer;
+  width: 100%;
+}
+
+.upload-prompt,
+.file-selected {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.upload-prompt svg,
+.file-selected svg {
+  color: #3b82f6;
+}
+
+.upload-prompt span,
+.file-selected span {
+  font-size: 18px;
+  color: #ffffff;
+  font-weight: 400;
+}
+
+.upload-prompt small {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 300;
+}
+
+/* Uploaded Files */
+.uploaded-files {
+  margin-top: 30px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.uploaded-files h4 {
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0 0 15px 0;
+  color: #3b82f6;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.file-item:last-child {
+  border-bottom: none;
+}
+
+.file-item svg {
+  color: #3b82f6;
+}
+
+.file-item span {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 300;
+}
+
+.file-size {
+  margin-left: auto;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Encryption Section */
+.encryption-section {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.encryption-process h3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 30px;
+  color: #3b82f6;
+}
+
+.encryption-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.encryption-step {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  text-align: left;
+}
+
+.step-icon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.step-icon svg {
+  color: #ffffff;
+}
+
+.step-info h4 {
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0 0 8px 0;
+  color: #ffffff;
+}
+
+.step-info p {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+/* Completion Section */
+.completion-section {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.success-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 40px;
+  background: rgba(76, 175, 80, 0.1);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+  border-radius: 12px;
+}
+
+.success-message svg {
+  color: #4CAF50;
+}
+
+.success-message h3 {
+  font-size: 24px;
+  font-weight: 400;
+  margin: 0;
+  color: #4CAF50;
+}
+
+.success-message p {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* Template Grid */
+.template-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.template-category {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 25px;
+  transition: all 0.3s ease;
+}
+
+.template-category:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.template-category h3 {
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0 0 20px 0;
+  color: #3b82f6;
+  text-align: center;
+}
+
+.template-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.template-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.template-field:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.field-name {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 300;
+}
+
+.field-controls {
+  display: flex;
+  gap: 4px;
+}
+
+.reveal-btn,
+.hide-btn {
+  background: none;
+  border: none;
+  padding: 4px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.reveal-btn {
+  color: #4CAF50;
+}
+
+.reveal-btn:hover {
+  background: rgba(76, 175, 80, 0.1);
+}
+
+.hide-btn {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.hide-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Template Example */
+.template-example {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 25px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.template-example h3 {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0 0 20px 0;
+  color: #3b82f6;
+  text-align: center;
+}
+
+.use-case {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.challenge,
+.response {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px;
+  border-radius: 6px;
+}
+
+.challenge {
+  background: rgba(255, 193, 7, 0.1);
+  border: 1px solid rgba(255, 193, 7, 0.3);
+}
+
+.challenge svg {
+  color: #FFC107;
+}
+
+.response {
+  background: rgba(76, 175, 80, 0.1);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.response svg {
+  color: #4CAF50;
+}
+
+.challenge span,
+.response span {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+/* Privacy Features */
+.privacy-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.feature {
+  text-align: center;
+  padding: 30px 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.feature:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.feature-icon {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.feature-icon svg {
+  color: #ffffff;
+}
+
+.feature h3 {
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0 0 15px 0;
+  color: #3b82f6;
+}
+
+.feature p {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 300;
+}
+
+/* CTA Button */
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  letter-spacing: 0.5px;
+  border: none;
+  cursor: pointer;
+}
+
+.cta-btn.primary {
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+  color: #ffffff;
+}
+
+.cta-btn.primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.2);
+}
+
+.cta-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .home-page {
+    padding: 1rem;
+  }
+  
+  .platform-header h1 {
+    font-size: 32px;
+  }
+  
+  .tagline {
+    font-size: 14px;
+  }
+  
+  .platform-section h2 {
+    font-size: 24px;
+  }
+  
+  .how-it-works-grid,
+  .template-grid,
+  .privacy-features {
+    grid-template-columns: 1fr;
+  }
+  
+  .upload-zone {
+    padding: 30px 15px;
+  }
+  
+  .encryption-step {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+  
+  .step-info {
+    text-align: center;
+  }
+  
+  .use-case {
+    gap: 10px;
+  }
+  
+  .challenge,
+  .response {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+}
