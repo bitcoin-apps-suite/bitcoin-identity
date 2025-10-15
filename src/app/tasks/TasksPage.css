@@ -1,0 +1,492 @@
+/* Tasks Page - Bitcoin Writer Style Structure */
+.tasks-page {
+  width: 100%;
+  padding: 2rem;
+  background: #0a0a0a;
+  color: #ffffff;
+  min-height: 100vh;
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 300;
+}
+
+.tasks-page > * {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Tasks Hero */
+.tasks-hero {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding: 3rem 0;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.tasks-hero h1 {
+  font-size: 42px;
+  font-weight: 200;
+  margin: 0 0 16px 0;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+.tasks-tagline {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 600px;
+  margin: 0 auto 20px;
+  line-height: 1.4;
+  font-weight: 300;
+}
+
+.equity-badge {
+  display: inline-block;
+  padding: 8px 20px;
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+/* Sections */
+section {
+  margin-bottom: 4rem;
+}
+
+section h2 {
+  font-size: 28px;
+  font-weight: 200;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+}
+
+/* Stats Section */
+.stats-section {
+  background: #0a0a0a;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.stat {
+  text-align: center;
+  padding: 20px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+}
+
+.stat:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  background: rgba(255, 255, 255, 0.01);
+}
+
+.stat-icon {
+  color: #3b82f6;
+  margin-bottom: 12px;
+}
+
+.stat h3 {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0 0 12px 0;
+}
+
+.stat-value {
+  font-size: 32px;
+  font-weight: 200;
+  color: #3b82f6;
+  margin: 0 0 4px 0;
+  letter-spacing: -1px;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+  font-weight: 300;
+}
+
+/* Priority Tasks */
+.priority-section {
+  background: #0a0a0a;
+}
+
+.priority-tasks {
+  display: grid;
+  gap: 24px;
+}
+
+.priority-task {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 24px;
+  transition: all 0.2s ease;
+}
+
+.priority-task:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  background: rgba(255, 255, 255, 0.01);
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.task-header h3 {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0;
+  color: #ffffff;
+  flex: 1;
+  margin-right: 16px;
+}
+
+.task-badges {
+  display: flex;
+  gap: 8px;
+}
+
+.difficulty,
+.status {
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.difficulty.easy {
+  background: rgba(76, 175, 80, 0.2);
+  color: #4CAF50;
+}
+
+.difficulty.medium {
+  background: rgba(255, 165, 0, 0.2);
+  color: #FFA500;
+}
+
+.difficulty.hard {
+  background: rgba(244, 67, 54, 0.2);
+  color: #F44336;
+}
+
+.status.open {
+  background: rgba(59, 130, 246, 0.2);
+  color: #3b82f6;
+}
+
+.status.in-progress {
+  background: rgba(255, 165, 0, 0.2);
+  color: #FFA500;
+}
+
+.task-description {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.task-details {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.detail svg {
+  color: #3b82f6;
+}
+
+.task-skills {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.skill-tag {
+  padding: 4px 12px;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 100px;
+  font-size: 12px;
+  color: #3b82f6;
+  font-weight: 400;
+}
+
+.task-actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* Categories Section */
+.categories-section {
+  background: #0a0a0a;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 24px;
+}
+
+.category-card {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.category-card h3 {
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0 0 20px 0;
+  color: #3b82f6;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.category-tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.category-task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.category-task:last-child {
+  border-bottom: none;
+}
+
+.task-info h4 {
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0 0 4px 0;
+  color: #ffffff;
+}
+
+.task-rewards {
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+}
+
+.tokens {
+  color: #3b82f6;
+  font-weight: 500;
+}
+
+.equity {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.claim-btn {
+  padding: 6px 16px;
+  background: transparent;
+  border: 1px solid rgba(59, 130, 246, 0.5);
+  border-radius: 100px;
+  color: #3b82f6;
+  font-size: 12px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.claim-btn:hover {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: #3b82f6;
+}
+
+/* Contribute Section */
+.contribute-section {
+  background: #0a0a0a;
+}
+
+.contribute-steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.step {
+  text-align: center;
+  padding: 20px 16px;
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 2px solid #3b82f6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 500;
+  color: #3b82f6;
+  margin: 0 auto 16px;
+}
+
+.step h3 {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 0 12px 0;
+  color: #ffffff;
+}
+
+.step p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+/* CTA Section */
+.cta-section {
+  text-align: center;
+  padding: 60px 20px;
+  background: #0a0a0a;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.cta-section h2 {
+  font-size: 32px;
+  font-weight: 200;
+  margin: 0 0 16px 0;
+  color: #ffffff;
+  letter-spacing: -1px;
+}
+
+.cta-content p {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 24px;
+  font-weight: 300;
+}
+
+.cta-buttons {
+  display: inline-flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 400;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  letter-spacing: 0.5px;
+  border: none;
+  cursor: pointer;
+}
+
+.cta-btn.primary {
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+  color: #ffffff;
+}
+
+.cta-btn.primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.2);
+}
+
+.cta-btn.secondary {
+  background: transparent;
+  color: #3b82f6;
+  border: 1px solid rgba(59, 130, 246, 0.5);
+}
+
+.cta-btn.secondary:hover {
+  background: rgba(59, 130, 246, 0.05);
+  border-color: #3b82f6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tasks-hero h1 {
+    font-size: 32px;
+  }
+  
+  .tasks-tagline {
+    font-size: 14px;
+  }
+  
+  section h2 {
+    font-size: 24px;
+  }
+  
+  .stats-grid,
+  .contribute-steps {
+    grid-template-columns: 1fr;
+  }
+  
+  .categories-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .task-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .task-details {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .task-actions {
+    flex-direction: column;
+  }
+  
+  .category-task {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}

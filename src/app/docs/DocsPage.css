@@ -1,0 +1,268 @@
+/* Docs Page - Bitcoin Writer Style Structure */
+.docs-page {
+  width: 100%;
+  padding: 2rem;
+  background: #0a0a0a;
+  color: #ffffff;
+  min-height: 100vh;
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 300;
+}
+
+.docs-page > * {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Docs Hero */
+.docs-hero {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding: 3rem 0;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.docs-hero h1 {
+  font-size: 42px;
+  font-weight: 200;
+  margin: 0 0 16px 0;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+.docs-tagline {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.4;
+  font-weight: 300;
+}
+
+/* Sections */
+section {
+  margin-bottom: 4rem;
+}
+
+section h2 {
+  font-size: 28px;
+  font-weight: 200;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+}
+
+/* Quick Start Section */
+.quickstart-section {
+  background: #0a0a0a;
+}
+
+.quickstart-card {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.quickstart-card h3 {
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0 0 20px 0;
+  color: #3b82f6;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.code-block {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 8px;
+  padding: 20px;
+  font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+  font-size: 14px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+}
+
+.comment {
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 8px;
+}
+
+.command {
+  color: #ffffff;
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+
+.command:last-child {
+  margin-bottom: 0;
+}
+
+.quickstart-note {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.quickstart-note code {
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+  font-size: 13px;
+  color: #3b82f6;
+}
+
+/* Documentation Sections */
+.docs-sections {
+  background: #0a0a0a;
+}
+
+.docs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 24px;
+}
+
+.docs-card {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 24px;
+  transition: all 0.2s ease;
+}
+
+.docs-card:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  background: rgba(255, 255, 255, 0.01);
+}
+
+.docs-card h3 {
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0 0 20px 0;
+  color: #3b82f6;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.docs-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.docs-links li {
+  margin-bottom: 8px;
+}
+
+.doc-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 300;
+  transition: all 0.2s ease;
+}
+
+.doc-link:hover {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+
+/* Resources Section */
+.resources-section {
+  background: #0a0a0a;
+}
+
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.resource-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.2s ease;
+}
+
+.resource-link:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  background: rgba(59, 130, 246, 0.02);
+}
+
+.resource-icon {
+  color: #3b82f6;
+  flex-shrink: 0;
+}
+
+.resource-info {
+  flex: 1;
+}
+
+.resource-title {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: #ffffff;
+}
+
+.resource-description {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.4;
+  font-weight: 300;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .docs-hero h1 {
+    font-size: 32px;
+  }
+  
+  .docs-tagline {
+    font-size: 14px;
+  }
+  
+  section h2 {
+    font-size: 24px;
+  }
+  
+  .docs-grid,
+  .resources-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .code-block {
+    font-size: 12px;
+    padding: 16px;
+  }
+  
+  .resource-link {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+}

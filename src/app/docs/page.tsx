@@ -1,9 +1,44 @@
 'use client';
 
-import React from 'react';
-import { BookOpen, Code, Zap, FileText, ExternalLink } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { BookOpen, Code, Zap, FileText, ExternalLink, Github } from 'lucide-react';
+import './DocsPage.css';
+import Footer from '../../components/Footer';
 
 export default function DocsPage() {
+  const [devSidebarCollapsed, setDevSidebarCollapsed] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem('devSidebarCollapsed');
+    setDevSidebarCollapsed(saved === 'true');
+    setIsMobile(window.innerWidth <= 768);
+  }, []);
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const saved = localStorage.getItem('devSidebarCollapsed');
+      setDevSidebarCollapsed(saved === 'true');
+    };
+    
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('resize', handleResize);
+    
+    const checkSidebarState = setInterval(() => {
+      const saved = localStorage.getItem('devSidebarCollapsed');
+      setDevSidebarCollapsed(saved === 'true');
+    }, 100);
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('resize', handleResize);
+      clearInterval(checkSidebarState);
+    };
+  }, []);
   const sections = [
     {
       title: 'Getting Started',
@@ -38,228 +73,108 @@ export default function DocsPage() {
   ];
 
   return (
-    <div style={{
-      padding: '2rem',
-      maxWidth: '1200px',
-      margin: '0 auto',
-      color: '#e8ffe8'
-    }}>
-      {/* Header */}
-      <div style={{ marginBottom: '3rem' }}>
-        <h1 style={{
-          fontSize: '2.5rem',
-          fontWeight: 'bold',
-          marginBottom: '0.5rem',
-          color: '#3b82f6'
-        }}>
-          Documentation
-        </h1>
-        <p style={{ color: 'rgba(232, 255, 232, 0.7)', fontSize: '1.1rem' }}>
-          Complete guide to building and deploying your Bitcoin Identity system
-        </p>
-      </div>
+    <div className="App">
+      <div className={`docs-page ${!isMobile && !devSidebarCollapsed ? 'with-sidebar-expanded' : ''} ${!isMobile && devSidebarCollapsed ? 'with-sidebar-collapsed' : ''}`}>
+        <div className="docs-container">
+          {/* Hero Section */}
+          <section className="docs-hero">
+            <h1><span style={{color: '#ffffff'}}>Bitcoin Identity</span> <span style={{color: '#3b82f6'}}>Documentation</span></h1>
+            <p className="docs-tagline">
+              Complete guide to building and deploying your Bitcoin Identity system
+            </p>
+          </section>
 
-      {/* Quick Start */}
-      <div className="card" style={{ padding: '2rem', marginBottom: '2rem' }}>
-        <h2 style={{ 
-          fontSize: '1.5rem', 
-          marginBottom: '1rem',
-          color: '#3b82f6',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.5rem'
-        }}>
-          <Zap size={24} />
-          Quick Start
-        </h2>
-        
-        <div style={{
-          background: 'rgba(0, 0, 0, 0.3)',
-          border: '1px solid rgba(59, 130, 246, 0.2)',
-          borderRadius: '8px',
-          padding: '1.5rem',
-          fontFamily: 'monospace',
-          fontSize: '0.9rem',
-          marginBottom: '1rem'
-        }}>
-          <div style={{ color: '#888', marginBottom: '0.5rem' }}># Clone the repository</div>
-          <div style={{ marginBottom: '1rem' }}>git clone https://github.com/bitcoin-apps-suite/bitcoin-identity.git</div>
-          
-          <div style={{ color: '#888', marginBottom: '0.5rem' }}># Install dependencies</div>
-          <div style={{ marginBottom: '1rem' }}>npm install</div>
-          
-          <div style={{ color: '#888', marginBottom: '0.5rem' }}># Start development server</div>
-          <div>npm run dev</div>
-        </div>
+          {/* Quick Start Section */}
+          <section className="quickstart-section">
+            <h2>Quick Start</h2>
+            <div className="quickstart-card">
+              <h3>
+                <Zap size={20} />
+                Get Started in Minutes
+              </h3>
+              
+              <div className="code-block">
+                <div className="comment"># Clone the repository</div>
+                <div className="command">git clone https://github.com/bitcoin-apps-suite/bitcoin-identity.git</div>
+                
+                <div className="comment"># Install dependencies</div>
+                <div className="command">npm install</div>
+                
+                <div className="comment"># Start development server</div>
+                <div className="command">npm run dev</div>
+              </div>
 
-        <p style={{ color: 'rgba(232, 255, 232, 0.7)' }}>
-          Your Bitcoin Identity system will be running at <code style={{ 
-            background: 'rgba(0, 255, 136, 0.1)', 
-            padding: '0.25rem 0.5rem', 
-            borderRadius: '4px',
-            fontFamily: 'monospace'
-          }}>
-            http://localhost:4090
-          </code>
-        </p>
-      </div>
+              <p className="quickstart-note">
+                Your Bitcoin Identity system will be running at <code>http://localhost:4090</code>
+              </p>
+            </div>
+          </section>
 
-      {/* Documentation Sections */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-        gap: '1.5rem',
-        marginBottom: '2rem'
-      }}>
-        {sections.map((section, index) => (
-          <div key={index} className="card" style={{ padding: '1.5rem' }}>
-            <h3 style={{ 
-              fontSize: '1.25rem', 
-              marginBottom: '1rem',
-              color: '#3b82f6',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem'
-            }}>
-              {section.icon}
-              {section.title}
-            </h3>
-            
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-              {section.items.map((item, itemIndex) => (
-                <li key={itemIndex} style={{ marginBottom: '0.75rem' }}>
-                  <a href="#" style={{
-                    color: 'rgba(232, 255, 232, 0.8)',
-                    textDecoration: 'none',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    padding: '0.5rem',
-                    borderRadius: '4px',
-                    transition: 'background 0.2s ease'
-                  }}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.background = 'rgba(0, 255, 136, 0.1)';
-                    e.currentTarget.style.color = '#3b82f6';
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.background = 'transparent';
-                    e.currentTarget.style.color = 'rgba(232, 255, 232, 0.8)';
-                  }}>
-                    <FileText size={16} />
-                    {item}
-                  </a>
-                </li>
+          {/* Documentation Sections */}
+          <section className="docs-sections">
+            <h2>Documentation Sections</h2>
+            <div className="docs-grid">
+              {sections.map((section, index) => (
+                <div key={index} className="docs-card">
+                  <h3>
+                    {section.icon}
+                    {section.title}
+                  </h3>
+                  
+                  <ul className="docs-links">
+                    {section.items.map((item, itemIndex) => (
+                      <li key={itemIndex}>
+                        <a href="#" className="doc-link">
+                          <FileText size={16} />
+                          {item}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-
-      {/* External Resources */}
-      <div className="card" style={{ padding: '2rem' }}>
-        <h2 style={{ 
-          fontSize: '1.5rem', 
-          marginBottom: '1rem',
-          color: '#3b82f6',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.5rem'
-        }}>
-          <BookOpen size={24} />
-          External Resources
-        </h2>
-
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '1rem'
-        }}>
-          <a href="https://docs.bsvblockchain.org" target="_blank" rel="noopener noreferrer" style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.75rem',
-            padding: '1rem',
-            border: '1px solid rgba(59, 130, 246, 0.2)',
-            borderRadius: '8px',
-            textDecoration: 'none',
-            color: 'rgba(232, 255, 232, 0.8)',
-            transition: 'all 0.2s ease'
-          }}
-          onMouseOver={(e) => {
-            e.currentTarget.style.borderColor = 'rgba(0, 255, 136, 0.4)';
-            e.currentTarget.style.background = 'rgba(0, 255, 136, 0.05)';
-          }}
-          onMouseOut={(e) => {
-            e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.2)';
-            e.currentTarget.style.background = 'transparent';
-          }}>
-            <ExternalLink size={20} style={{ color: '#3b82f6' }} />
-            <div>
-              <div style={{ fontWeight: '600', marginBottom: '0.25rem' }}>BSV SDK Documentation</div>
-              <div style={{ fontSize: '0.9rem', color: 'rgba(232, 255, 232, 0.6)' }}>
-                Official Bitcoin SV SDK documentation
-              </div>
             </div>
-          </a>
+          </section>
 
-          <a href="https://docs.handcash.io" target="_blank" rel="noopener noreferrer" style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.75rem',
-            padding: '1rem',
-            border: '1px solid rgba(59, 130, 246, 0.2)',
-            borderRadius: '8px',
-            textDecoration: 'none',
-            color: 'rgba(232, 255, 232, 0.8)',
-            transition: 'all 0.2s ease'
-          }}
-          onMouseOver={(e) => {
-            e.currentTarget.style.borderColor = 'rgba(0, 255, 136, 0.4)';
-            e.currentTarget.style.background = 'rgba(0, 255, 136, 0.05)';
-          }}
-          onMouseOut={(e) => {
-            e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.2)';
-            e.currentTarget.style.background = 'transparent';
-          }}>
-            <ExternalLink size={20} style={{ color: '#3b82f6' }} />
-            <div>
-              <div style={{ fontWeight: '600', marginBottom: '0.25rem' }}>HandCash Connect</div>
-              <div style={{ fontSize: '0.9rem', color: 'rgba(232, 255, 232, 0.6)' }}>
-                Integrate wallet functionality
-              </div>
-            </div>
-          </a>
+          {/* External Resources */}
+          <section className="resources-section">
+            <h2>External Resources</h2>
 
-          <a href="https://github.com/bitcoin-apps-suite/bitcoin-identity" target="_blank" rel="noopener noreferrer" style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.75rem',
-            padding: '1rem',
-            border: '1px solid rgba(59, 130, 246, 0.2)',
-            borderRadius: '8px',
-            textDecoration: 'none',
-            color: 'rgba(232, 255, 232, 0.8)',
-            transition: 'all 0.2s ease'
-          }}
-          onMouseOver={(e) => {
-            e.currentTarget.style.borderColor = 'rgba(0, 255, 136, 0.4)';
-            e.currentTarget.style.background = 'rgba(0, 255, 136, 0.05)';
-          }}
-          onMouseOut={(e) => {
-            e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.2)';
-            e.currentTarget.style.background = 'transparent';
-          }}>
-            <ExternalLink size={20} style={{ color: '#3b82f6' }} />
-            <div>
-              <div style={{ fontWeight: '600', marginBottom: '0.25rem' }}>GitHub Repository</div>
-              <div style={{ fontSize: '0.9rem', color: 'rgba(232, 255, 232, 0.6)' }}>
-                Source code and issue tracking
-              </div>
+            <div className="resources-grid">
+              <a href="https://docs.bsvblockchain.org" target="_blank" rel="noopener noreferrer" className="resource-link">
+                <ExternalLink size={20} className="resource-icon" />
+                <div className="resource-info">
+                  <div className="resource-title">BSV SDK Documentation</div>
+                  <div className="resource-description">
+                    Official Bitcoin SV SDK documentation
+                  </div>
+                </div>
+              </a>
+
+              <a href="https://docs.handcash.io" target="_blank" rel="noopener noreferrer" className="resource-link">
+                <ExternalLink size={20} className="resource-icon" />
+                <div className="resource-info">
+                  <div className="resource-title">HandCash Connect</div>
+                  <div className="resource-description">
+                    Integrate wallet functionality
+                  </div>
+                </div>
+              </a>
+
+              <a href="https://github.com/bitcoin-apps-suite/bitcoin-identity" target="_blank" rel="noopener noreferrer" className="resource-link">
+                <Github size={20} className="resource-icon" />
+                <div className="resource-info">
+                  <div className="resource-title">GitHub Repository</div>
+                  <div className="resource-description">
+                    Source code and issue tracking
+                  </div>
+                </div>
+              </a>
             </div>
-          </a>
+          </section>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

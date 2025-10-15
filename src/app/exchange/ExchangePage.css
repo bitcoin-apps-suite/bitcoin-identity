@@ -1,0 +1,294 @@
+/* Exchange Page - Bitcoin Writer Style Structure */
+.exchange-page {
+  width: 100%;
+  padding: 2rem;
+  background: #0a0a0a;
+  color: #ffffff;
+  min-height: 100vh;
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 300;
+}
+
+.exchange-page > * {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Exchange Hero */
+.exchange-hero {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding: 3rem 0;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.exchange-hero h1 {
+  font-size: 42px;
+  font-weight: 200;
+  margin: 0 0 16px 0;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+.exchange-tagline {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.4;
+  font-weight: 300;
+}
+
+/* Sections */
+section {
+  margin-bottom: 4rem;
+}
+
+section h2 {
+  font-size: 28px;
+  font-weight: 200;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+}
+
+/* Stats Section */
+.stats-section {
+  background: #0a0a0a;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.stat {
+  text-align: center;
+  padding: 20px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  position: relative;
+}
+
+.stat:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  background: rgba(255, 255, 255, 0.01);
+}
+
+.stat-icon {
+  color: #3b82f6;
+  margin-bottom: 12px;
+}
+
+.stat h3 {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0 0 12px 0;
+}
+
+.stat-value {
+  font-size: 32px;
+  font-weight: 200;
+  color: #3b82f6;
+  margin: 0 0 4px 0;
+  letter-spacing: -1px;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+  font-weight: 300;
+}
+
+/* Trading Section */
+.trading-section {
+  background: #0a0a0a;
+}
+
+.trading-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.trading-card {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  padding: 24px;
+}
+
+.trading-card h3 {
+  font-size: 18px;
+  font-weight: 300;
+  margin: 0 0 20px 0;
+  color: #3b82f6;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.trading-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.trading-table th {
+  text-align: left;
+  padding: 12px 8px;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.trading-table th:last-child,
+.trading-table td:last-child {
+  text-align: right;
+}
+
+.trading-table td {
+  padding: 12px 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.trading-table .pair-name {
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.trading-table .price {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.trading-table .change.positive {
+  color: #3b82f6;
+}
+
+.trading-table .change.negative {
+  color: #ff4444;
+}
+
+.trading-table .volume {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.trading-table .time {
+  color: rgba(255, 255, 255, 0.6);
+  font-family: monospace;
+}
+
+.trading-table .type.buy {
+  color: #3b82f6;
+  font-weight: 500;
+}
+
+.trading-table .type.sell {
+  color: #ff4444;
+  font-weight: 500;
+}
+
+.trading-table .amount {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Trading Interface Section */
+.trading-interface-section {
+  background: #0a0a0a;
+  text-align: center;
+}
+
+.trading-interface {
+  background: transparent;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 4px;
+  padding: 40px 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.trading-interface p {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 24px;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.cta-buttons {
+  display: inline-flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 400;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  letter-spacing: 0.5px;
+  border: none;
+  cursor: pointer;
+}
+
+.cta-btn.primary {
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+  color: #ffffff;
+}
+
+.cta-btn.primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .exchange-hero h1 {
+    font-size: 32px;
+  }
+  
+  .exchange-tagline {
+    font-size: 14px;
+  }
+  
+  section h2 {
+    font-size: 24px;
+  }
+  
+  .stats-grid,
+  .trading-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .trading-table {
+    font-size: 12px;
+  }
+  
+  .trading-table th,
+  .trading-table td {
+    padding: 8px 4px;
+  }
+}

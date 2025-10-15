@@ -1,7 +1,45 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import { TrendingUp, BarChart3, Activity, Users, DollarSign, ArrowUpDown } from 'lucide-react';
+import './ExchangePage.css';
+import Footer from '../../components/Footer';
 
 export default function ExchangePage() {
+  const [devSidebarCollapsed, setDevSidebarCollapsed] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem('devSidebarCollapsed');
+    setDevSidebarCollapsed(saved === 'true');
+    setIsMobile(window.innerWidth <= 768);
+  }, []);
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const saved = localStorage.getItem('devSidebarCollapsed');
+      setDevSidebarCollapsed(saved === 'true');
+    };
+    
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('resize', handleResize);
+    
+    const checkSidebarState = setInterval(() => {
+      const saved = localStorage.getItem('devSidebarCollapsed');
+      setDevSidebarCollapsed(saved === 'true');
+    }, 100);
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('resize', handleResize);
+      clearInterval(checkSidebarState);
+    };
+  }, []);
+
   // Mock data for demonstration
   const tradingPairs = [
     { pair: 'BSV/USD', price: '$45.23', change: '+2.4%', volume: '1.2M' },
@@ -16,165 +54,142 @@ export default function ExchangePage() {
   ];
 
   return (
-    <div style={{
-      padding: '2rem',
-      maxWidth: '1400px',
-      margin: '0 auto',
-      color: '#e8ffe8'
-    }}>
-      {/* Header */}
-      <div style={{ marginBottom: '2rem' }}>
-        <h1 style={{
-          fontSize: '2.5rem',
-          fontWeight: 'bold',
-          marginBottom: '0.5rem',
-          color: '#3b82f6'
-        }}>
-          Exchange
-        </h1>
-        <p style={{ color: 'rgba(232, 255, 232, 0.7)', fontSize: '1.1rem' }}>
-          Trade Bitcoin SV and application tokens with real-time market data
-        </p>
-      </div>
+    <div className="App">
+      <div className={`exchange-page ${!isMobile && !devSidebarCollapsed ? 'with-sidebar-expanded' : ''} ${!isMobile && devSidebarCollapsed ? 'with-sidebar-collapsed' : ''}`}>
+      <div className="exchange-container">
+        {/* Hero Section */}
+        <section className="exchange-hero">
+          <h1><span style={{color: '#ffffff'}}>Bitcoin Identity</span> <span style={{color: '#3b82f6'}}>Exchange</span></h1>
+          <p className="exchange-tagline">
+            Trade Bitcoin SV and application tokens with real-time market data
+          </p>
+        </section>
 
-      {/* Stats Cards */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-        gap: '1rem',
-        marginBottom: '2rem'
-      }}>
-        <div className="card" style={{ padding: '1.5rem', textAlign: 'center' }}>
-          <TrendingUp size={24} style={{ color: '#3b82f6', marginBottom: '0.5rem' }} />
-          <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#3b82f6' }}>$2.4M</div>
-          <div style={{ color: 'rgba(232, 255, 232, 0.7)' }}>24h Volume</div>
-        </div>
-        
-        <div className="card" style={{ padding: '1.5rem', textAlign: 'center' }}>
-          <Users size={24} style={{ color: '#3b82f6', marginBottom: '0.5rem' }} />
-          <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#3b82f6' }}>1,247</div>
-          <div style={{ color: 'rgba(232, 255, 232, 0.7)' }}>Active Traders</div>
-        </div>
-        
-        <div className="card" style={{ padding: '1.5rem', textAlign: 'center' }}>
-          <Activity size={24} style={{ color: '#3b82f6', marginBottom: '0.5rem' }} />
-          <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#3b82f6' }}>3</div>
-          <div style={{ color: 'rgba(232, 255, 232, 0.7)' }}>Trading Pairs</div>
-        </div>
-        
-        <div className="card" style={{ padding: '1.5rem', textAlign: 'center' }}>
-          <DollarSign size={24} style={{ color: '#3b82f6', marginBottom: '0.5rem' }} />
-          <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#3b82f6' }}>$45.23</div>
-          <div style={{ color: 'rgba(232, 255, 232, 0.7)' }}>BSV Price</div>
-        </div>
-      </div>
-
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
-        {/* Trading Pairs */}
-        <div className="card" style={{ padding: '1.5rem' }}>
-          <h2 style={{ 
-            fontSize: '1.25rem', 
-            marginBottom: '1rem',
-            color: '#3b82f6',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem'
-          }}>
-            <BarChart3 size={20} />
-            Trading Pairs
-          </h2>
-          
-          <div style={{ overflow: 'hidden' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-              <thead>
-                <tr style={{ borderBottom: '1px solid rgba(0, 255, 136, 0.2)' }}>
-                  <th style={{ textAlign: 'left', padding: '0.5rem', color: 'rgba(232, 255, 232, 0.7)' }}>Pair</th>
-                  <th style={{ textAlign: 'right', padding: '0.5rem', color: 'rgba(232, 255, 232, 0.7)' }}>Price</th>
-                  <th style={{ textAlign: 'right', padding: '0.5rem', color: 'rgba(232, 255, 232, 0.7)' }}>Change</th>
-                  <th style={{ textAlign: 'right', padding: '0.5rem', color: 'rgba(232, 255, 232, 0.7)' }}>Volume</th>
-                </tr>
-              </thead>
-              <tbody>
-                {tradingPairs.map((pair, index) => (
-                  <tr key={index} style={{ borderBottom: '1px solid rgba(0, 255, 136, 0.1)' }}>
-                    <td style={{ padding: '0.75rem 0.5rem', fontWeight: '500' }}>{pair.pair}</td>
-                    <td style={{ padding: '0.75rem 0.5rem', textAlign: 'right' }}>{pair.price}</td>
-                    <td style={{ 
-                      padding: '0.75rem 0.5rem', 
-                      textAlign: 'right',
-                      color: pair.change.startsWith('+') ? '#3b82f6' : '#ff4444'
-                    }}>
-                      {pair.change}
-                    </td>
-                    <td style={{ padding: '0.75rem 0.5rem', textAlign: 'right', color: 'rgba(232, 255, 232, 0.7)' }}>
-                      {pair.volume}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        {/* Stats Section */}
+        <section className="stats-section">
+          <h2>Exchange Statistics</h2>
+          <div className="stats-grid">
+            <div className="stat">
+              <TrendingUp size={20} className="stat-icon" />
+              <h3>24h Volume</h3>
+              <p className="stat-value">$2.4M</p>
+              <p className="stat-label">Trading volume</p>
+            </div>
+            
+            <div className="stat">
+              <Users size={20} className="stat-icon" />
+              <h3>Active Traders</h3>
+              <p className="stat-value">1,247</p>
+              <p className="stat-label">Online users</p>
+            </div>
+            
+            <div className="stat">
+              <Activity size={20} className="stat-icon" />
+              <h3>Trading Pairs</h3>
+              <p className="stat-value">3</p>
+              <p className="stat-label">Available pairs</p>
+            </div>
+            
+            <div className="stat">
+              <DollarSign size={20} className="stat-icon" />
+              <h3>BSV Price</h3>
+              <p className="stat-value">$45.23</p>
+              <p className="stat-label">Current price</p>
+            </div>
           </div>
-        </div>
+        </section>
 
-        {/* Recent Trades */}
-        <div className="card" style={{ padding: '1.5rem' }}>
-          <h2 style={{ 
-            fontSize: '1.25rem', 
-            marginBottom: '1rem',
-            color: '#3b82f6',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem'
-          }}>
-            <ArrowUpDown size={20} />
-            Recent Trades
-          </h2>
-          
-          <div style={{ overflow: 'hidden' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-              <thead>
-                <tr style={{ borderBottom: '1px solid rgba(0, 255, 136, 0.2)' }}>
-                  <th style={{ textAlign: 'left', padding: '0.5rem', color: 'rgba(232, 255, 232, 0.7)' }}>Time</th>
-                  <th style={{ textAlign: 'left', padding: '0.5rem', color: 'rgba(232, 255, 232, 0.7)' }}>Type</th>
-                  <th style={{ textAlign: 'right', padding: '0.5rem', color: 'rgba(232, 255, 232, 0.7)' }}>Amount</th>
-                  <th style={{ textAlign: 'right', padding: '0.5rem', color: 'rgba(232, 255, 232, 0.7)' }}>Price</th>
-                </tr>
-              </thead>
-              <tbody>
-                {recentTrades.map((trade, index) => (
-                  <tr key={index} style={{ borderBottom: '1px solid rgba(0, 255, 136, 0.1)' }}>
-                    <td style={{ padding: '0.75rem 0.5rem', color: 'rgba(232, 255, 232, 0.7)' }}>{trade.time}</td>
-                    <td style={{ 
-                      padding: '0.75rem 0.5rem',
-                      color: trade.type === 'BUY' ? '#3b82f6' : '#ff4444'
-                    }}>
-                      {trade.type}
-                    </td>
-                    <td style={{ padding: '0.75rem 0.5rem', textAlign: 'right' }}>{trade.amount}</td>
-                    <td style={{ padding: '0.75rem 0.5rem', textAlign: 'right' }}>{trade.price}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        {/* Trading Section */}
+        <section className="trading-section">
+          <div className="trading-grid">
+            {/* Trading Pairs */}
+            <div className="trading-card">
+              <h3>
+                <BarChart3 size={20} />
+                Trading Pairs
+              </h3>
+              
+              <div className="table-container">
+                <table className="trading-table">
+                  <thead>
+                    <tr>
+                      <th>Pair</th>
+                      <th>Price</th>
+                      <th>Change</th>
+                      <th>Volume</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {tradingPairs.map((pair, index) => (
+                      <tr key={index}>
+                        <td className="pair-name">{pair.pair}</td>
+                        <td className="price">{pair.price}</td>
+                        <td className={`change ${pair.change.startsWith('+') ? 'positive' : 'negative'}`}>
+                          {pair.change}
+                        </td>
+                        <td className="volume">{pair.volume}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* Recent Trades */}
+            <div className="trading-card">
+              <h3>
+                <ArrowUpDown size={20} />
+                Recent Trades
+              </h3>
+              
+              <div className="table-container">
+                <table className="trading-table">
+                  <thead>
+                    <tr>
+                      <th>Time</th>
+                      <th>Type</th>
+                      <th>Amount</th>
+                      <th>Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {recentTrades.map((trade, index) => (
+                      <tr key={index}>
+                        <td className="time">{trade.time}</td>
+                        <td className={`type ${trade.type.toLowerCase()}`}>
+                          {trade.type}
+                        </td>
+                        <td className="amount">{trade.amount}</td>
+                        <td className="price">{trade.price}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </section>
 
-      {/* Trading Interface Placeholder */}
-      <div className="card" style={{ padding: '2rem', marginTop: '2rem', textAlign: 'center' }}>
-        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#3b82f6' }}>
-          Trading Interface
-        </h3>
-        <p style={{ color: 'rgba(232, 255, 232, 0.7)', marginBottom: '1.5rem' }}>
-          Implement your trading interface here with order books, chart widgets, and order placement forms.
-        </p>
-        <button className="btn-primary" style={{ margin: '0 0.5rem' }}>
-          Place Buy Order
-        </button>
-        <button className="btn-primary" style={{ margin: '0 0.5rem' }}>
-          Place Sell Order
-        </button>
+        {/* Trading Interface Section */}
+        <section className="trading-interface-section">
+          <h2>Trading Interface</h2>
+          <div className="trading-interface">
+            <p>
+              Implement your trading interface here with order books, chart widgets, and order placement forms.
+            </p>
+            <div className="cta-buttons">
+              <button className="cta-btn primary">
+                Place Buy Order
+              </button>
+              <button className="cta-btn primary">
+                Place Sell Order
+              </button>
+            </div>
+          </div>
+        </section>
       </div>
+    </div>
+    <Footer />
     </div>
   );
 }
