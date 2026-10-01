@@ -6,6 +6,7 @@ import GoogleAuthButton from './GoogleAuth';
 import { HandCashService } from '../services/HandCashService';
 import type { HandCashUser } from '../services/HandCashService';
 import AuthModal from './AuthModal';
+import { hasCWI, signInWithCWI } from '../mobile/cwi';
 import './UnifiedAuth.css';
 
 interface GoogleUser {
@@ -71,6 +72,12 @@ const UnifiedAuth: React.FC<UnifiedAuthProps> = ({ onAuthChange }) => {
   const handleHandCashLogin = async () => {
     setIsLoading(true);
     try {
+      // Inside bWallet: BRC-100 sign-in via window.CWI (public identity key only)
+      if (hasCWI()) {
+        setHandcashUser(await signInWithCWI());
+        setShowAuthModal(false);
+        return;
+      }
       await handcashService.login();
       setHandcashUser(handcashService.getCurrentUser());
       setShowAuthModal(false);
