@@ -6,7 +6,7 @@ import './Dock.css';
 interface DockApp {
   id?: string;
   name: string;
-  icon: any;
+  icon: React.ElementType;
   color: string;
   url?: string;
   disabled?: boolean;
@@ -26,8 +26,8 @@ const Dock: React.FC = () => {
     setIconTheme(getCurrentTheme());
     
     // Listen for theme changes
-    const handleThemeChange = (event: any) => {
-      setIconTheme(event.detail);
+    const handleThemeChange = (event: Event) => {
+      setIconTheme((event as CustomEvent).detail);
     };
     
     window.addEventListener('iconThemeChanged', handleThemeChange);
@@ -113,7 +113,7 @@ const Dock: React.FC = () => {
 
   const handleAppClick = (app: DockApp) => {
     if (!app.disabled && app.url && !app.current) {
-      window.location.href = app.url;
+      window.location.assign(app.url);
     }
   };
 
@@ -168,14 +168,14 @@ const Dock: React.FC = () => {
           <button 
             className="status-button" 
             title="Bitcoin Corporation"
-            onClick={() => window.location.href = 'https://bitcoin-corp.vercel.app/'}
+            onClick={() => window.location.assign('https://bitcoin-corp.vercel.app/')}
           >
             <Building2 className="status-icon" style={{ color: '#f7931a' }} />
           </button>
           <button 
             className="status-button" 
             title="Trust"
-            onClick={() => window.location.href = 'https://bitcoin-corp.vercel.app/trust'}
+            onClick={() => window.location.assign('https://bitcoin-corp.vercel.app/trust')}
           >
             <Shield className="status-icon" style={{ color: '#3b82f6' }} />
           </button>

@@ -5,7 +5,7 @@ import './MinimalDock.css';
 interface DockApp {
   id?: string;
   name: string;
-  icon: any;
+  icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }> | "custom";
   color: string;
   url?: string;
   disabled?: boolean;
@@ -108,7 +108,7 @@ const MinimalDock: React.FC = () => {
 
   const handleAppClick = (app: DockApp) => {
     if (!app.disabled && app.url && !app.current) {
-      window.location.href = app.url;
+      window.location.assign(app.url);
     }
   };
 
@@ -133,7 +133,7 @@ const MinimalDock: React.FC = () => {
                 title={app.name}
                 disabled={app.disabled}
               >
-                <Icon className="minimal-dock-icon" style={{ color: getIconColor(app.color, index) }} />
+                {Icon !== "custom" && <Icon className="minimal-dock-icon" style={{ color: getIconColor(app.color, index) }} />}
                 {app.current && <span className="minimal-dock-indicator" />}
               </button>
             );
@@ -175,7 +175,7 @@ const MinimalDock: React.FC = () => {
                     <path d="M3 9h18" />
                   </svg>
                 ) : (
-                  <Icon className="minimal-dock-icon-mini" style={{ color: getIconColor(app.color, index) }} />
+                  Icon !== "custom" && <Icon className="minimal-dock-icon-mini" style={{ color: getIconColor(app.color, index) }} />
                 )}
               </button>
             );

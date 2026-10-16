@@ -201,7 +201,7 @@ const TokenPage: React.FC = () => {
               </div>
               <p style={{textAlign: 'center', marginTop: '20px', fontSize: '14px', color: 'rgba(255, 255, 255, 0.6)'}}>
                 The Bitcoin Identity ecosystem enables secure, decentralized identity management,
-                generating platform fees that contribute to the ecosystem's sustainability.
+                generating platform fees that contribute to the ecosystem&apos;s sustainability.
               </p>
             </div>
           </div>
@@ -285,11 +285,11 @@ const TokenPage: React.FC = () => {
             <p>
               <strong>Trading & Liquidity:</strong> The $BID token is intended to be freely tradable 
               on the Bitcoin Identity Exchange and associated platforms. We encourage an active secondary 
-              market to provide liquidity and price discovery for contributors' work.
+              market to provide liquidity and price discovery for contributors&apos; work.
             </p>
             <p>
               <strong>$BIDSHARE Fundraising:</strong> The Bitcoin Identity Corporation LTD intends to issue $BIDSHARE 
-              tokens as a fundraising mechanism. These tokens will represent participation in the platform's 
+              tokens as a fundraising mechanism. These tokens will represent participation in the platform&apos;s 
               success and may be offered through appropriate channels.
             </p>
             <p>

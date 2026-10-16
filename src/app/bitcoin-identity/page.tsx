@@ -24,12 +24,12 @@ const MarketingPage: React.FC = () => {
           </h1>
           
           <p className="hero-subtitle">
-            The world's first regulated platform for tokenizing celebrity identities and personal brands. 
+            The world&apos;s first regulated platform for tokenizing celebrity identities and personal brands. 
             Issue shares in your identity, receive revenue distributions, and trade on the Identity Exchange.
           </p>
           
           <div className="hero-buttons">
-            <button className="cta-primary" onClick={() => window.location.href = '/'}>
+            <button className="cta-primary" onClick={() => window.location.assign('/')}>
               <span>Launch Platform</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -161,8 +161,8 @@ const MarketingPage: React.FC = () => {
           <div className="testimonials-grid">
             <div className="testimonial">
               <div className="testimonial-content">
-                "A celebrity can tokenize their personal brand and let fans invest in their future success. 
-                Speaking fees, book deals, and appearances generate dividends for shareholders."
+                &quot;A celebrity can tokenize their personal brand and let fans invest in their future success. 
+                Speaking fees, book deals, and appearances generate dividends for shareholders.&quot;
               </div>
               <div className="testimonial-author">
                 <div className="author-avatar celebrity">👑</div>
@@ -175,8 +175,8 @@ const MarketingPage: React.FC = () => {
             
             <div className="testimonial">
               <div className="testimonial-content">
-                "Musicians and content creators can issue shares in specific identities or characters. 
-                Revenue from music sales, streaming, and content automatically flows to token holders."
+                &quot;Musicians and content creators can issue shares in specific identities or characters. 
+                Revenue from music sales, streaming, and content automatically flows to token holders.&quot;
               </div>
               <div className="testimonial-author">
                 <div className="author-avatar musician">🎵</div>
@@ -189,8 +189,8 @@ const MarketingPage: React.FC = () => {
             
             <div className="testimonial">
               <div className="testimonial-content">
-                "Investors can buy shares in personalities they believe will become more valuable. 
-                Early investment in rising stars or established celebrities with growth potential."
+                &quot;Investors can buy shares in personalities they believe will become more valuable. 
+                Early investment in rising stars or established celebrities with growth potential.&quot;
               </div>
               <div className="testimonial-author">
                 <div className="author-avatar investor">📈</div>
@@ -233,7 +233,7 @@ const MarketingPage: React.FC = () => {
               <h3 className="step-title">SHARE ISSUANCE</h3>
               <p className="step-description">
                 Issue shares to the public via the Identity Exchange. 
-                Fans and investors can purchase stakes in the celebrity's future earnings.
+                Fans and investors can purchase stakes in the celebrity&apos;s future earnings.
               </p>
             </div>
             
@@ -241,7 +241,7 @@ const MarketingPage: React.FC = () => {
               <div className="step-number">4</div>
               <h3 className="step-title">REVENUE DISTRIBUTION</h3>
               <p className="step-description">
-                Earnings flow to celebrity's paymail, then automatically distributed 
+                Earnings flow to celebrity&apos;s paymail, then automatically distributed 
                 to shareholders via Divvy integration.
               </p>
             </div>
@@ -256,12 +256,12 @@ const MarketingPage: React.FC = () => {
             READY TO TOKENIZE YOUR IDENTITY?
           </h2>
           <p className="cta-subtitle">
-            Join the future of celebrity finance. Whether you're a public figure looking to monetize your brand 
+            Join the future of celebrity finance. Whether you&apos;re a public figure looking to monetize your brand 
             or an investor seeking exposure to personality-driven revenue streams.
           </p>
           
           <div className="cta-buttons">
-            <button className="cta-primary large" onClick={() => window.location.href = '/'}>
+            <button className="cta-primary large" onClick={() => window.location.assign('/')}>
               <span>LAUNCH BITCOIN IDENTITY</span>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

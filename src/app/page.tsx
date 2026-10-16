@@ -8,11 +8,11 @@ import DockManager from '../components/DockManager';
 
 export default function HomePage() {
   const [dragActive, setDragActive] = useState(false);
-  const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const [encryptionStep, setEncryptionStep] = useState('upload'); // 'upload', 'encrypt', 'complete'
-  const [masterImage, setMasterImage] = useState(null);
+  const [masterImage, setMasterImage] = useState<File | null>(null);
 
-  const handleDrag = (e) => {
+  const handleDrag = (e: React.DragEvent<HTMLElement>) => {
     e.preventDefault();
     e.stopPropagation();
     if (e.type === "dragenter" || e.type === "dragover") {
@@ -22,7 +22,7 @@ export default function HomePage() {
     }
   };
 
-  const handleDrop = (e) => {
+  const handleDrop = (e: React.DragEvent<HTMLElement>) => {
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
@@ -32,7 +32,7 @@ export default function HomePage() {
     }
   };
 
-  const handleFiles = (files) => {
+  const handleFiles = (files: FileList) => {
     const fileArray = Array.from(files);
     setUploadedFiles(prev => [...prev, ...fileArray]);
   };
@@ -107,16 +107,17 @@ export default function HomePage() {
                 Step 1: Choose Your Master Image
               </h3>
               <p>
-                Select a personal image that you'll always have access to. This will be your cryptographic root key.
-                <strong> Keep this image secure and backed up - it's your identity recovery method.</strong>
+                Select a personal image that you&apos;ll always have access to. This will be your cryptographic root key.
+                <strong> Keep this image secure and backed up - it&apos;s your identity recovery method.</strong>
               </p>
               <div className="upload-zone master-image">
                 <input 
                   type="file" 
                   accept="image/*" 
                   onChange={(e) => {
-                    if (e.target.files[0]) {
-                      setMasterImage(e.target.files[0]);
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      setMasterImage(file);
                     }
                   }}
                   style={{ display: 'none' }}
@@ -158,7 +159,7 @@ export default function HomePage() {
                 <input 
                   type="file" 
                   multiple 
-                  onChange={(e) => handleFiles(e.target.files)}
+                  onChange={(e) => e.target.files && handleFiles(e.target.files)}
                   style={{ display: 'none' }}
                   id="file-input"
                 />
@@ -288,11 +289,11 @@ export default function HomePage() {
           <div className="use-case">
             <div className="challenge">
               <AlertCircle size={20} />
-              <span><strong>Verification Request:</strong> "Are you over 21 years old?"</span>
+              <span><strong>Verification Request:</strong> &quot;Are you over 21 years old?&quot;</span>
             </div>
             <div className="response">
               <CheckCircle size={20} />
-              <span><strong>Your Response:</strong> "Yes, I am over 21" (cryptographically proven without revealing actual age)</span>
+              <span><strong>Your Response:</strong> &quot;Yes, I am over 21&quot; (cryptographically proven without revealing actual age)</span>
             </div>
           </div>
         </div>

@@ -33,7 +33,7 @@ import './LeftSideDock.css';
 interface DockApp {
   id?: string;
   name: string;
-  icon: any;
+  icon: React.ElementType;
   color: string;
   url?: string;
   disabled?: boolean;
@@ -53,8 +53,8 @@ const LeftSideDock: React.FC<LeftSideDockProps> = ({ currentApp = 'bitcoin-ident
     setMounted(true);
     setIconTheme(getCurrentTheme());
     
-    const handleThemeChange = (event: any) => {
-      setIconTheme(event.detail);
+    const handleThemeChange = (event: Event) => {
+      setIconTheme((event as CustomEvent).detail);
     };
     
     window.addEventListener('iconThemeChanged', handleThemeChange);
@@ -137,7 +137,7 @@ const LeftSideDock: React.FC<LeftSideDockProps> = ({ currentApp = 'bitcoin-ident
 
   const handleAppClick = (app: DockApp) => {
     if (!app.disabled && app.url && !app.current) {
-      window.location.href = app.url;
+      window.location.assign(app.url);
     }
   };
 
