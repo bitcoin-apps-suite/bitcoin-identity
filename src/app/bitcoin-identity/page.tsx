@@ -59,54 +59,6 @@ const MarketingPage: React.FC = () => {
           </div>
         </div>
         
-        <div className="hero-visual">
-          <div className="app-preview">
-            <div className="app-window">
-              <div className="window-header">
-                <div className="window-controls">
-                  <div className="control close"></div>
-                  <div className="control minimize"></div>
-                  <div className="control maximize"></div>
-                </div>
-                <div className="window-title">Bitcoin Identity Exchange</div>
-              </div>
-              <div className="window-content">
-                <div className="mock-sidebar">
-                  <div className="mock-nav-item active">🏛️ Celebrity <span className="badge">24</span></div>
-                  <div className="mock-nav-item">🎵 Musicians</div>
-                  <div className="mock-nav-item">📺 Influencers <span className="badge">12</span></div>
-                  <div className="mock-nav-item">⭐ Athletes</div>
-                </div>
-                <div className="mock-identity-list">
-                  <div className="mock-identity">
-                    <div className="identity-avatar">TB</div>
-                    <div className="identity-content">
-                      <div className="identity-name">Tony Blair</div>
-                      <div className="identity-ticker">$BLAIR</div>
-                      <div className="identity-revenue">Speaking fees, book deals...</div>
-                    </div>
-                    <div className="identity-meta">
-                      <div className="identity-price">$0.0234</div>
-                      <div className="identity-change positive">+12.4% ↑</div>
-                    </div>
-                  </div>
-                  <div className="mock-identity">
-                    <div className="identity-avatar">ZD</div>
-                    <div className="identity-content">
-                      <div className="identity-name">Zero Dice</div>
-                      <div className="identity-ticker">$ZERODICE</div>
-                      <div className="identity-revenue">ASMR Techno music revenue...</div>
-                    </div>
-                    <div className="identity-meta">
-                      <div className="identity-price">$0.0445</div>
-                      <div className="identity-change positive">+8.7% ↑</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* Features Section */}
@@ -154,7 +106,7 @@ const MarketingPage: React.FC = () => {
               </div>
               <h3 className="feature-title">REVENUE DISTRIBUTION</h3>
               <p className="feature-description">
-                Automatic distribution of earnings to shareholders via HandCash paymail. 
+                Automatic distribution of earnings to shareholders via paymail. 
                 Real-time tracking of income and dividend payments.
               </p>
             </div>
@@ -194,7 +146,7 @@ const MarketingPage: React.FC = () => {
               <h3 className="feature-title">DIVVY INTEGRATION</h3>
               <p className="feature-description">
                 Seamless integration with Divvy for automated revenue distribution. 
-                HandCash-based payments to shareholders with full audit trails.
+                Wallet payments to shareholders with full audit trails.
               </p>
             </div>
           </div>
@@ -289,7 +241,7 @@ const MarketingPage: React.FC = () => {
               <div className="step-number">4</div>
               <h3 className="step-title">REVENUE DISTRIBUTION</h3>
               <p className="step-description">
-                Earnings flow to celebrity's HandCash paymail, then automatically distributed 
+                Earnings flow to celebrity's paymail, then automatically distributed 
                 to shareholders via Divvy integration.
               </p>
             </div>
