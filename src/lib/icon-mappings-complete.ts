@@ -8,15 +8,13 @@ import {
   FileText as LucideFileText, 
   HardDrive as LucideHardDrive, 
   Globe as LucideGlobe, 
-  Terminal as LucideTerminal, 
-  Settings as LucideSettings, 
+ 
   Calendar as LucideCalendar, 
   Search as LucideSearch, 
   TrendingUp as LucideTrendingUp, 
   Briefcase as LucideBriefcase, 
   Table as LucideTable, 
-  Share2 as LucideShare2,
-  DollarSign as LucideDollarSign,
+
   Store as LucideStore,
   Code2 as LucideCode2,
   Video as LucideVideo,
@@ -42,15 +40,13 @@ import {
   MdDescription,
   MdStorage,
   MdLanguage,
-  MdTerminal,
-  MdSettings,
+
   MdCalendarToday,
   MdSearch,
-  MdTrendingUp,
+
   MdWork,
   MdTableChart,
-  MdShare,
-  MdAttachMoney,
+
   MdStore,
   MdCode,
   MdShowChart,

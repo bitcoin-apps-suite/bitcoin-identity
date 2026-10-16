@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useSidebarCollapsed } from '@/lib/hooks/clientState';
 import DevSidebar from './DevSidebar';
 import Taskbar from './Taskbar';
-import UnifiedAuth from './UnifiedAuth';
 import { useBitcoinOS } from '@/lib/utils/useBitcoinOS';
 
 interface DevLayoutProps {
@@ -11,30 +11,20 @@ interface DevLayoutProps {
 }
 
 const DevLayout: React.FC<DevLayoutProps> = ({ children }) => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const isCollapsed = useSidebarCollapsed();
   const { isInOS, setTitle } = useBitcoinOS();
 
   useEffect(() => {
-    // Check if sidebar is collapsed from localStorage on mount
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('devSidebarCollapsed');
-      setIsCollapsed(saved === 'true');
-    }
-    
     // Set app title when running in Bitcoin OS
     if (isInOS) {
       setTitle('Bitcoin Identity');
     }
   }, [isInOS, setTitle]);
 
-  const handleCollapsedChange = (collapsed: boolean) => {
-    setIsCollapsed(collapsed);
-  };
-
   return (
     <>
       {!isInOS && <Taskbar />}
-      {!isInOS && <DevSidebar onCollapsedChange={handleCollapsedChange} />}
+      {!isInOS && <DevSidebar />}
       <div className={`app-container ${isInOS ? '' : (isCollapsed ? 'with-dev-sidebar-collapsed' : 'with-dev-sidebar')}`}>
         {children}
       </div>

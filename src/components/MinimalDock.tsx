@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Wallet, Mail, Music, FileText, HardDrive, Calendar, Search, Table, Share2, Briefcase, Store, Wifi, Battery, Clock, TrendingUp, Building2, Shield, Video, Code2, Camera, MapPin, MessageCircle, Users, Gamepad2, BookOpen, Globe, Box, Monitor, GraduationCap, Paintbrush, UserCheck, Maximize2, Home, Sparkles } from 'lucide-react';
+import { Wallet, Mail, Music, FileText, HardDrive, Calendar, Search, Table, Briefcase, Store, Wifi, Battery, Clock, TrendingUp, Building2, Shield, Video, Code2, Camera, MapPin, MessageCircle, Users, Gamepad2, BookOpen, Globe, Box, Monitor, GraduationCap, Paintbrush, Maximize2, Sparkles } from 'lucide-react';
+import { setStoredValue, useMounted } from '@/lib/hooks/clientState';
 import './MinimalDock.css';
 
 interface DockApp {
@@ -14,14 +15,11 @@ interface DockApp {
 }
 
 const MinimalDock: React.FC = () => {
-  const [currentTime, setCurrentTime] = useState(new Date());
-  const [mounted, setMounted] = useState(false);
+  const [currentTime, setCurrentTime] = useState(() => new Date());
+  const mounted = useMounted();
 
   useEffect(() => {
-    setMounted(true);
-    const timer = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
+    const timer = setInterval(() => setCurrentTime(new Date()), 1000);
     return () => clearInterval(timer);
   }, []);
 
@@ -114,8 +112,7 @@ const MinimalDock: React.FC = () => {
 
   const toggleDockSize = () => {
     const newDockStyle = 'large';
-    localStorage.setItem('dockStyle', newDockStyle);
-    window.dispatchEvent(new CustomEvent('dockStyleChanged', { detail: newDockStyle }));
+    setStoredValue('dockStyle', newDockStyle);
   };
 
   return (

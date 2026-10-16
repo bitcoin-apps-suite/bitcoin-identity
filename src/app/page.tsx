@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import './HomePage.css';
 
-import { Upload, Shield, Key, Eye, EyeOff, Lock, FileText, Image, CheckCircle, AlertCircle } from 'lucide-react';
+import { Upload, Shield, Key, Eye, EyeOff, Lock, FileText, Image as ImageIcon, CheckCircle, AlertCircle } from 'lucide-react';
 import DockManager from '../components/DockManager';
 
 export default function HomePage() {
@@ -103,7 +103,7 @@ export default function HomePage() {
           <div className="upload-section">
             <div className="master-image-upload">
               <h3>
-                <Image size={24} />
+                <ImageIcon size={24} />
                 Step 1: Choose Your Master Image
               </h3>
               <p>
@@ -131,7 +131,7 @@ export default function HomePage() {
                     </div>
                   ) : (
                     <div className="upload-prompt">
-                      <Image size={48} />
+                      <ImageIcon size={48} />
                       <span>Choose Master Image</span>
                       <small>This will be your cryptographic root</small>
                     </div>

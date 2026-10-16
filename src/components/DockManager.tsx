@@ -1,28 +1,12 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useStoredValue } from '@/lib/hooks/clientState';
 import Dock from './Dock';
 import MinimalDock from './MinimalDock';
 
 const DockManager: React.FC = () => {
-  const [dockStyle, setDockStyle] = useState<string>('large');
-
-  useEffect(() => {
-    // Get initial dock style from localStorage
-    const savedStyle = localStorage.getItem('dockStyle') || 'large';
-    setDockStyle(savedStyle);
-
-    // Listen for dock style changes
-    const handleDockStyleChange = (event: CustomEvent) => {
-      setDockStyle(event.detail);
-    };
-
-    window.addEventListener('dockStyleChanged', handleDockStyleChange as EventListener);
-
-    return () => {
-      window.removeEventListener('dockStyleChanged', handleDockStyleChange as EventListener);
-    };
-  }, []);
+  const dockStyle = useStoredValue('dockStyle', 'large') ?? 'large';
 
   return (
     <>

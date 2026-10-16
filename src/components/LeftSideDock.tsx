@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import Image from 'next/image';
 import { 
   Wallet, 
   Mail, 
@@ -27,7 +28,8 @@ import {
   UserCheck,
   Maximize2
 } from 'lucide-react';
-import { getThemedIcon, getCurrentTheme } from './lib/icon-themes';
+import { getThemedIcon } from '@/lib/icon-themes';
+import { setStoredValue, useIconTheme } from '@/lib/hooks/clientState';
 import './LeftSideDock.css';
 
 interface DockApp {
@@ -46,23 +48,7 @@ interface LeftSideDockProps {
 }
 
 const LeftSideDock: React.FC<LeftSideDockProps> = ({ currentApp = 'bitcoin-identity' }) => {
-  const [mounted, setMounted] = useState(false);
-  const [iconTheme, setIconTheme] = useState<string>('lucide');
-
-  useEffect(() => {
-    setMounted(true);
-    setIconTheme(getCurrentTheme());
-    
-    const handleThemeChange = (event: Event) => {
-      setIconTheme((event as CustomEvent).detail);
-    };
-    
-    window.addEventListener('iconThemeChanged', handleThemeChange);
-    
-    return () => {
-      window.removeEventListener('iconThemeChanged', handleThemeChange);
-    };
-  }, []);
+  const iconTheme = useIconTheme();
 
   const getRainbowColor = (index: number): string => {
     const rainbowColors = [
@@ -143,8 +129,7 @@ const LeftSideDock: React.FC<LeftSideDockProps> = ({ currentApp = 'bitcoin-ident
 
   const toggleDockSize = () => {
     const newDockStyle = 'large';
-    localStorage.setItem('dockStyle', newDockStyle);
-    window.dispatchEvent(new CustomEvent('dockStyleChanged', { detail: newDockStyle }));
+    setStoredValue('dockStyle', newDockStyle);
   };
 
   return (
@@ -174,7 +159,7 @@ const LeftSideDock: React.FC<LeftSideDockProps> = ({ currentApp = 'bitcoin-ident
               >
                 {app.id === 'bapps-store' ? (
                   <div className="dock-app-icon-vertical">
-                    <img src="/bapps-icon.jpg" alt="BAPPS" className="dock-app-image-vertical" />
+                    <Image src="/bapps-icon.jpg" alt="BAPPS" width={32} height={32} className="dock-app-image-vertical" />
                   </div>
                 ) : (
                   <Icon className="dock-app-icon-vertical" style={{ color: getIconColor(app.color, index) }} />

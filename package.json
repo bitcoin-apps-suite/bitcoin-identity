@@ -7,7 +7,7 @@
     "dev": "next dev -p 4090",
     "build": "next build",
     "start": "next start -p 4090",
-    "lint": "eslint",
+    "lint": "eslint --max-warnings 0",
     "kill:4090": "lsof -ti:4090 | xargs kill -9",
     "kill:dev": "lsof -ti:4090 | xargs kill -9 && lsof -ti:4091 | xargs kill -9",
     "kill:all": "for port in {4090..4100}; do lsof -ti:$port | xargs kill -9 2>/dev/null || true; done"
