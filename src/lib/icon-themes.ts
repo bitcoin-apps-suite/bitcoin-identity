@@ -70,8 +70,8 @@ import {
 } from 'react-icons/md'
 
 export interface IconMapping {
-  lucide: any
-  'react-icons': any
+  lucide: React.ElementType
+  'react-icons': React.ElementType
 }
 
 export const iconMappings: { [key: string]: IconMapping } = {

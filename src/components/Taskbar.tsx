@@ -21,25 +21,25 @@ interface DropdownMenu {
 
 export default function Taskbar() {
   // const { data: session } = useSession() // TODO: Add authentication integration
-  const session = null // Placeholder for authentication
+  const session = null as { user?: { email?: string } } | null // Placeholder for authentication
   const [activeMenu, setActiveMenu] = useState<string | null>(null)
   const [showBitcoinSuite, setShowBitcoinSuite] = useState(false)
   const [showMobileMenu, setShowMobileMenu] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
 
   const handleOpenExchange = () => {
-    window.location.href = '/exchange'
+    window.location.assign('/exchange')
   }
 
   const handleOpenContracts = () => {
-    window.location.href = '/contracts'
+    window.location.assign('/contracts')
   }
 
   const menus: DropdownMenu[] = [
     {
       label: 'Bitcoin Identity',
       items: [
-        { label: 'Home', shortcut: '⌘H', action: () => window.location.href = '/' },
+        { label: 'Home', shortcut: '⌘H', action: () => window.location.assign('/') },
         { divider: true },
         { label: 'About Bitcoin Identity', action: () => alert(
           'Bitcoin Identity v1.0.0\n\n' +
@@ -63,35 +63,35 @@ export default function Taskbar() {
     {
       label: 'Identity',
       items: [
-        { label: 'Identity Verification', shortcut: '⌘I', action: () => window.location.href = '/identity' },
-        { label: 'Asset Registry', action: () => window.location.href = '/assets' },
+        { label: 'Identity Verification', shortcut: '⌘I', action: () => window.location.assign('/identity') },
+        { label: 'Asset Registry', action: () => window.location.assign('/assets') },
         { divider: true },
-        { label: 'KYC/AML Compliance', action: () => window.location.href = '/compliance' },
-        { label: 'Document Upload', action: () => window.location.href = '/identity' },
+        { label: 'KYC/AML Compliance', action: () => window.location.assign('/compliance') },
+        { label: 'Document Upload', action: () => window.location.assign('/identity') },
         { divider: true },
-        { label: 'Government ID Verification', action: () => window.location.href = '/identity' }
+        { label: 'Government ID Verification', action: () => window.location.assign('/identity') }
       ]
     },
     {
       label: 'Assets',
       items: [
-        { label: 'Asset Registry', shortcut: '⌘A', action: () => window.location.href = '/assets' },
-        { label: 'Real Estate', action: () => window.location.href = '/assets' },
+        { label: 'Asset Registry', shortcut: '⌘A', action: () => window.location.assign('/assets') },
+        { label: 'Real Estate', action: () => window.location.assign('/assets') },
         { divider: true },
-        { label: 'Vehicles', action: () => window.location.href = '/assets' },
-        { label: 'Intellectual Property', action: () => window.location.href = '/assets' },
+        { label: 'Vehicles', action: () => window.location.assign('/assets') },
+        { label: 'Intellectual Property', action: () => window.location.assign('/assets') },
         { divider: true },
-        { label: 'Financial Assets', action: () => window.location.href = '/assets' }
+        { label: 'Financial Assets', action: () => window.location.assign('/assets') }
       ]
     },
     {
       label: 'Compliance',
       items: [
-        { label: 'KYC/AML Dashboard', action: () => window.location.href = '/compliance' },
-        { label: 'Risk Assessment', action: () => window.location.href = '/compliance' },
+        { label: 'KYC/AML Dashboard', action: () => window.location.assign('/compliance') },
+        { label: 'Risk Assessment', action: () => window.location.assign('/compliance') },
         { divider: true },
-        { label: 'Regulatory Reports', action: () => window.location.href = '/compliance' },
-        { label: 'Flagged Users', action: () => window.location.href = '/compliance' }
+        { label: 'Regulatory Reports', action: () => window.location.assign('/compliance') },
+        { label: 'Flagged Users', action: () => window.location.assign('/compliance') }
       ]
     },
     {
@@ -207,7 +207,7 @@ export default function Taskbar() {
               setActiveMenu(null)
             }}
             onDoubleClick={() => {
-              window.location.href = '/'
+              window.location.assign('/')
             }}
             style={{
               padding: '0 12px',
@@ -422,7 +422,7 @@ export default function Taskbar() {
       <button 
         className="sm:hidden flex-1 text-center" 
         onClick={() => {
-          window.location.href = '/'
+          window.location.assign('/')
         }}
         style={{ 
           fontSize: '14px',
@@ -466,7 +466,7 @@ export default function Taskbar() {
         color: 'rgba(255, 255, 255, 0.8)'
       }}>
         <button
-          onClick={() => window.location.href = '/token'}
+          onClick={() => window.location.assign('/token')}
           style={{
             background: 'linear-gradient(90deg, #3b82f6, #fbbf24)',
             color: '#000',
