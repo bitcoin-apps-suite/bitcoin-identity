@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { setStoredValue, useMounted, useSidebarCollapsed } from '@/lib/hooks/clientState';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { 
@@ -21,31 +22,11 @@ import {
 } from 'lucide-react';
 import './DevSidebar.css';
 
-interface DevSidebarProps {
-  onCollapsedChange?: (collapsed: boolean) => void;
-}
-
-const DevSidebar: React.FC<DevSidebarProps> = ({ onCollapsedChange }) => {
-  const [isCollapsed, setIsCollapsed] = useState(true); // Always start with server-safe default
-  const [mounted, setMounted] = useState(false);
+const DevSidebar: React.FC = () => {
+  const isCollapsed = useSidebarCollapsed();
+  const mounted = useMounted();
   const [issueCount, setIssueCount] = useState<number>(0);
   const pathname = usePathname();
-
-  useEffect(() => {
-    // Set mounted to true and load collapsed state from localStorage
-    setMounted(true);
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('devSidebarCollapsed');
-      setIsCollapsed(saved !== null ? saved === 'true' : true);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('devSidebarCollapsed', isCollapsed.toString());
-    }
-    onCollapsedChange?.(isCollapsed);
-  }, [isCollapsed, onCollapsedChange]);
 
   useEffect(() => {
     // Fetch GitHub issue count - replace with your repository
@@ -97,7 +78,7 @@ const DevSidebar: React.FC<DevSidebarProps> = ({ onCollapsedChange }) => {
         )}
         <button 
           className="dev-sidebar-toggle"
-          onClick={() => setIsCollapsed(!isCollapsed)}
+          onClick={() => setStoredValue('devSidebarCollapsed', String(!isCollapsed))}
           aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
         >
           {isCollapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}

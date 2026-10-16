@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Wallet, Mail, Music, FileText, HardDrive, Calendar, Search, Table, Briefcase, Store, Wifi, Volume2, Battery, Clock, TrendingUp, Building2, Shield, Video, Code2, Camera, MapPin, MessageCircle, Users, Gamepad2, BookOpen, Globe, Box, FolderOpen, Minimize2, Monitor, Home } from 'lucide-react';
-import { getThemedIcon, getCurrentTheme } from '@/lib/icon-themes';
+import { Wallet, Mail, Music, FileText, HardDrive, Calendar, Search, Table, Briefcase, Store, Wifi, Battery, Clock, TrendingUp, Building2, Shield, Video, Code2, Camera, MapPin, MessageCircle, Users, Gamepad2, BookOpen, Globe, Box, Minimize2, Monitor } from 'lucide-react';
+import { getThemedIcon } from '@/lib/icon-themes';
+import { setStoredValue, useIconTheme, useMounted } from '@/lib/hooks/clientState';
 import './Dock.css';
 
 interface DockApp {
@@ -15,32 +16,13 @@ interface DockApp {
 }
 
 const Dock: React.FC = () => {
-  const [mounted, setMounted] = useState(false);
-  const [iconTheme, setIconTheme] = useState<string>('lucide');
-  const [currentTime, setCurrentTime] = useState(new Date());
+  const mounted = useMounted();
+  const iconTheme = useIconTheme();
+  const [currentTime, setCurrentTime] = useState(() => new Date());
 
   useEffect(() => {
-    setMounted(true);
-    
-    // Set initial theme
-    setIconTheme(getCurrentTheme());
-    
-    // Listen for theme changes
-    const handleThemeChange = (event: Event) => {
-      setIconTheme((event as CustomEvent).detail);
-    };
-    
-    window.addEventListener('iconThemeChanged', handleThemeChange);
-    
-    // Timer for clock
-    const timer = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-    
-    return () => {
-      window.removeEventListener('iconThemeChanged', handleThemeChange);
-      clearInterval(timer);
-    };
+    const timer = setInterval(() => setCurrentTime(new Date()), 1000);
+    return () => clearInterval(timer);
   }, []);
 
   const getRainbowColor = (index: number): string => {
@@ -119,8 +101,7 @@ const Dock: React.FC = () => {
 
   const toggleDockSize = () => {
     const newDockStyle = 'minimal';
-    localStorage.setItem('dockStyle', newDockStyle);
-    window.dispatchEvent(new CustomEvent('dockStyleChanged', { detail: newDockStyle }));
+    setStoredValue('dockStyle', newDockStyle);
   };
 
   return (

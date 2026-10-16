@@ -3,7 +3,18 @@
  * Use this in your React apps to integrate with Bitcoin OS
  */
 
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useSyncExternalStore } from 'react'
+
+const noopSubscribe = () => () => {}
+
+// Running inside Bitcoin OS means being framed by it; this never changes after load.
+function checkOS(): boolean {
+  try {
+    return window.parent !== window && window.parent.location.href.includes('bitcoin-os')
+  } catch {
+    return window.parent !== window
+  }
+}
 
 interface BitcoinOSConfig {
   theme?: 'light' | 'dark'
@@ -12,23 +23,12 @@ interface BitcoinOSConfig {
 }
 
 export function useBitcoinOS() {
-  const [isInOS, setIsInOS] = useState(false)
+  const isInOS = useSyncExternalStore(noopSubscribe, checkOS, () => false)
   const [config, setConfig] = useState<BitcoinOSConfig>({})
   const [theme, setTheme] = useState<'light' | 'dark'>('dark')
 
   useEffect(() => {
-    // Check if running inside Bitcoin OS
-    const checkOS = () => {
-      try {
-        return window.parent !== window && window.parent.location.href.includes('bitcoin-os')
-      } catch (e) {
-        return window.parent !== window
-      }
-    }
-
-    setIsInOS(checkOS())
-
-    if (!checkOS()) return
+    if (!isInOS) return
 
     // Handle messages from OS
     const handleMessage = (event: MessageEvent) => {
@@ -60,7 +60,7 @@ export function useBitcoinOS() {
     return () => {
       window.removeEventListener('message', handleMessage)
     }
-  }, [])
+  }, [isInOS])
 
   const sendToOS = useCallback((type: string, data: Record<string, unknown> = {}) => {
     if (!isInOS) return

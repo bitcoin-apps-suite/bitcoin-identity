@@ -27,14 +27,6 @@ export default function Taskbar() {
   const [showMobileMenu, setShowMobileMenu] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
 
-  const handleOpenExchange = () => {
-    window.location.assign('/exchange')
-  }
-
-  const handleOpenContracts = () => {
-    window.location.assign('/contracts')
-  }
-
   const menus: DropdownMenu[] = [
     {
       label: 'Bitcoin Identity',

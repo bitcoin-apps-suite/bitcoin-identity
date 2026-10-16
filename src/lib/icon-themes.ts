@@ -6,15 +6,13 @@ import {
   FileText, 
   HardDrive, 
   Globe, 
-  Terminal, 
-  Settings, 
+ 
   Calendar, 
   Search, 
-  LineChart, 
+ 
   Briefcase, 
   Table, 
-  Share2,
-  DollarSign,
+
   Store,
   Code2,
   TrendingUp,
@@ -42,15 +40,13 @@ import {
   MdDescription,
   MdStorage,
   MdLanguage,
-  MdTerminal,
-  MdSettings,
+
   MdCalendarToday,
   MdSearch,
   MdTrendingUp,
   MdWork,
   MdTableChart,
-  MdShare,
-  MdAttachMoney,
+
   MdStore,
   MdCode,
   MdShowChart,
@@ -133,7 +129,7 @@ export const iconMappings: { [key: string]: IconMapping } = {
 }
 
 // Import the complete mappings
-import { getCompleteThemedIcon, completeIconMappings } from './icon-mappings-complete'
+import { getCompleteThemedIcon } from './icon-mappings-complete'
 
 export const getThemedIcon = (iconId: string, theme: string = 'lucide') => {
   // Use the complete icon mappings for all themes

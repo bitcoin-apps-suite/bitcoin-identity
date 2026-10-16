@@ -1,44 +1,14 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useMaxWidth, useSidebarCollapsed } from '@/lib/hooks/clientState';
 import './TasksPage.css';
 import Footer from '../../components/Footer';
-import { CheckSquare, Clock, DollarSign, Users, GitBranch, Star, Award, Target } from 'lucide-react';
+import { CheckSquare, Clock, DollarSign, Users, GitBranch, Star, Target } from 'lucide-react';
 
 export default function TasksPage() {
-  const [devSidebarCollapsed, setDevSidebarCollapsed] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const saved = localStorage.getItem('devSidebarCollapsed');
-    setDevSidebarCollapsed(saved === 'true');
-    setIsMobile(window.innerWidth <= 768);
-  }, []);
-
-  useEffect(() => {
-    const handleStorageChange = () => {
-      const saved = localStorage.getItem('devSidebarCollapsed');
-      setDevSidebarCollapsed(saved === 'true');
-    };
-    
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    
-    window.addEventListener('storage', handleStorageChange);
-    window.addEventListener('resize', handleResize);
-    
-    const checkSidebarState = setInterval(() => {
-      const saved = localStorage.getItem('devSidebarCollapsed');
-      setDevSidebarCollapsed(saved === 'true');
-    }, 100);
-    
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-      window.removeEventListener('resize', handleResize);
-      clearInterval(checkSidebarState);
-    };
-  }, []);
+  const devSidebarCollapsed = useSidebarCollapsed();
+  const isMobile = useMaxWidth(768);
 
   const priorityTasks = [
     {

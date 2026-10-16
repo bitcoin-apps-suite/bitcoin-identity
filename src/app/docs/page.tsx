@@ -1,43 +1,13 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { BookOpen, Code, Zap, FileText, ExternalLink, Github } from 'lucide-react';
+import React from 'react';
+import { useMaxWidth, useSidebarCollapsed } from '@/lib/hooks/clientState';
+import { Code, Zap, FileText, ExternalLink, Github } from 'lucide-react';
 import './DocsPage.css';
 
 export default function DocsPage() {
-  const [devSidebarCollapsed, setDevSidebarCollapsed] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const saved = localStorage.getItem('devSidebarCollapsed');
-    setDevSidebarCollapsed(saved === 'true');
-    setIsMobile(window.innerWidth <= 768);
-  }, []);
-
-  useEffect(() => {
-    const handleStorageChange = () => {
-      const saved = localStorage.getItem('devSidebarCollapsed');
-      setDevSidebarCollapsed(saved === 'true');
-    };
-    
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    
-    window.addEventListener('storage', handleStorageChange);
-    window.addEventListener('resize', handleResize);
-    
-    const checkSidebarState = setInterval(() => {
-      const saved = localStorage.getItem('devSidebarCollapsed');
-      setDevSidebarCollapsed(saved === 'true');
-    }, 100);
-    
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-      window.removeEventListener('resize', handleResize);
-      clearInterval(checkSidebarState);
-    };
-  }, []);
+  const devSidebarCollapsed = useSidebarCollapsed();
+  const isMobile = useMaxWidth(768);
   const sections = [
     {
       title: 'Getting Started',
